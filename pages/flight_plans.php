@@ -10,19 +10,53 @@
               <span class="float-sm-right"><button type="button" class="btn btn-rounded btn-dark btn-fw" style="color: #38ce3c" data-toggle="modal" data-target="#exampleModalAddFlight">Add Flight</button></span>
             </div>
             <div class="card-body">
+              <div class="mb-4">
+                <div class="row income-expense-summary-chart-text">
+                  <div class="col-md-6 col-xl-4 d-flex align-items-center">
+                    <div class="input-group" id="income-expense-summary-chart-daterange">
+                      <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
+                      <input type="text" class="form-control">
+                      <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
                   <thead>
                     <tr>
-                      <th>Flight</th>
-                      <th>To</th>
-                      <th>From</th>
-                      <th>Status</th>
-                      <th>Gate</th>
-                      <th>Departure</th>
-                      <th>Arrival</th>
-                      <th>Pilot</th>
-                      <th>Action</th>
+                        <th style="vertical-align: middle" rowspan="3">Date</th>
+                        <th colspan="3">Time of Operation</th>
+                        <th colspan="4">Flight Particulars</th>
+                        <th colspan="3">Aircraft Particulars</th>
+                        <th colspan="4">Passenger Traffic</th>
+                        <th colspan="4">Freight Traffic</th>
+                        <th style="vertical-align: middle" rowspan="3">Action</th>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: middle" rowspan="2">Landing</th>
+                        <th style="vertical-align: middle" rowspan="2">Take-Off</th>
+                        <th style="vertical-align: middle" rowspan="2">Parking</th>
+                        <th style="vertical-align: middle" rowspan="2">Nature</th>
+                        <th style="vertical-align: middle" rowspan="2">Flight No.</th>
+                        <th style="vertical-align: middle" rowspan="2">Origin</th>
+                        <th style="vertical-align: middle" rowspan="2">Destination</th>
+                        <th style="vertical-align: middle" rowspan="2">Type</th>
+                        <th style="vertical-align: middle" rowspan="2">Reg. No</th>
+                        <th style="vertical-align: middle" rowspan="2">Owner</th>
+                        <th style="vertical-align: middle" rowspan="2">Arrival</th>
+                        <th style="vertical-align: middle" colspan="3">Depature</th>
+                        <th style="vertical-align: middle" colspan="2">General Cargo</th>
+                        <th style="vertical-align: middle; border-right-width: 1px;" colspan="2">Air Mail</th>
+                    </tr>
+                    <tr>
+                        <th>Non-Revenue</th>
+                        <th>Dead head</th>
+                        <th>Transit</th>
+                        <th>Unloaded</th>
+                        <th>Loaded</th>
+                        <th>Unloaded</th>
+                        <th style="border-right-width: 1px;">Loaded</th>
                     </tr>
                   </thead>
                   <!-- <tfoot>
@@ -48,119 +82,22 @@
                       <td>07:40</td>
                       <td>23:35</td>
                       <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
+                      <td>John Doe</td>
                       <td>
                         <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;" data-toggle="modal" data-target="#exampleModalUpdateFlight" data-whatever="@fat">
                             <span class="icon-pencil" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm" data-toggle="modal"  data-target="#exampleModalDeleteFlight" data-whatever="@fat">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7112</td>
-                      <td>Philippines</td>
-                      <td>Black Hole</td>
-                      <td><label class="badge badge-info">Scheduled</label></td>
-                      <td>A-12</td>
-                      <td>03:40</td>
-                      <td>22:36</td>
-                      <td>John Smith</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7154</td>
-                      <td>Philippines</td>
-                      <td>Diyan lang</td>
-                      <td><label class="badge badge-warning">Departed</label></td>
-                      <td>A-13</td>
-                      <td>02:40</td>
-                      <td>05:16</td>
-                      <td>Janny Smith</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7123</td>
-                      <td>Philippines</td>
-                      <td>Kahit saan</td>
-                      <td><label class="badge badge-warning">In Air</label></td>
-                      <td>A-14</td>
-                      <td>23:22</td>
-                      <td>06:41</td>
-                      <td>Janny Doe</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7152</td>
-                      <td>Philippines</td>
-                      <td>Antartic</td>
-                      <td><label class="badge badge-success">Landed</label></td>
-                      <td>A-15</td>
-                      <td>04:30</td>
-                      <td>18:53</td>
-                      <td>Foe</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7135</td>
-                      <td>Philippines</td>
-                      <td>Ocean</td>
-                      <td><label class="badge badge-success">Arrived</label></td>
-                      <td>A-16</td>
-                      <td>15:50</td>
-                      <td>22:12</td>
-                      <td>Doe</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">CX7125</td>
-                      <td>Philippines</td>
-                      <td>Deep web</td>
-                      <td><label class="badge badge-danger">Cancelled</label></td>
-                      <td>A-17</td>
-                      <td>12:40</td>
-                      <td>04:25</td>
-                      <td>Smith</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
+                        <button type="button" class="btn btn-danger btn-rounded btn-sm" data-toggle="modal"  data-target="#exampleModalDeleteFlight">
                             <span class="icon-trash" aria-hidden="true"></span>
                         </button>
                       </td>
@@ -186,41 +123,88 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Flight:</label>
-                    <input type="text" class="form-control" id="flight-name">
+                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Landing and Take-Off:</label>
+                    <div class="row income-expense-summary-chart-text" style="margin-left: 2px;">
+                      <div class="d-flex align-items-center">
+                        <div class="input-group" id="income-expense-summary-chart-daterange-modal">
+                          <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
+                          <input type="text" class="form-control">
+                          <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
+                        </div>
+                    </div>
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="from-location" class="col-form-label" style="padding-bottom: 0">From:</label>
-                    <input type="text" class="form-control" id="from-location">
+                    <label for="parking" class="col-form-label" style="padding-bottom: 0">Parking:</label>
+                    <input type="text" class="form-control" id="parking">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="nature" class="col-form-label" style="padding-bottom: 0">Nature:</label>
+                    <input type="text" class="form-control" id="nature">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="to-location" class="col-form-label" style="padding-bottom: 0">To:</label>
-                    <input type="text" class="form-control" id="to-location">
+                    <label for="flight-no" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
+                    <input type="text" class="form-control" id="flight-no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="status" class="col-form-label" style="padding-bottom: 0">Status:</label>
-                    <select class="form-control" id="exampleStatus">
-                      <option>Select</option>
-                      <option>Scheduled</option>
-                      <option>Delayed</option>
-                      <option>Departed</option>
-                      <option>In Air</option>
-                      <option>Landed</option>
-                      <option>Arrived</option>
-                      <option>Cancelled</option>
-                    </select>
+                    <label for="origin" class="col-form-label" style="padding-bottom: 0">Origin:</label>
+                    <input type="text" class="form-control" id="origin">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Gate:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="destination" class="col-form-label" style="padding-bottom: 0">Destination:</label>
+                    <input type="text" class="form-control" id="destination">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="type" class="col-form-label" style="padding-bottom: 0">Type:</label>
+                    <input type="text" class="form-control" id="type">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Departure-Arrival:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="reg-no" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
+                    <input type="text" class="form-control" id="reg-no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="pilot" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
-                    <input type="text" class="form-control" id="pilot">
+                    <label for="owner" class="col-form-label" style="padding-bottom: 0">Owner:</label>
+                    <input type="text" class="form-control" id="owner">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="arrival" class="col-form-label" style="padding-bottom: 0">Arrival:</label>
+                    <input type="text" class="form-control" id="arrival">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="non-revenue" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
+                    <input type="text" class="form-control" id="non-revenue">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="dead-head" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
+                    <input type="text" class="form-control" id="dead-head">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="transit" class="col-form-label" style="padding-bottom: 0">Transit:</label>
+                    <input type="text" class="form-control" id="transit">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="gc-unloaded" class="col-form-label" style="padding-bottom: 0">GC Unloaded:</label>
+                    <input type="text" class="form-control" id="gc-unloaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="gc-loaded" class="col-form-label" style="padding-bottom: 0">GC Loaded:</label>
+                    <input type="text" class="form-control" id="gc-loaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am-unloaded" class="col-form-label" style="padding-bottom: 0">AM Unloaded:</label>
+                    <input type="text" class="form-control" id="am-unloaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am-loaded" class="col-form-label" style="padding-bottom: 0">AM Loaded:</label>
+                    <input type="text" class="form-control" id="am-loaded">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="license-no" class="col-form-label" style="padding-bottom: 0">License No.:</label>
+                    <input type="text" class="form-control" id="license-no">
                   </div>
                 </form>
               </div>
@@ -231,9 +215,9 @@
             </div>
           </div>
         </div>
+        </div>
         <!-- Modal Ends -->
 
-        <!-- Update Modal starts -->
         <div class="modal fade" id="exampleModalUpdateFlight" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -246,52 +230,99 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Flight:</label>
-                    <input type="text" class="form-control" id="flight-name">
+                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Landing and Take-Off:</label>
+                    <div class="row income-expense-summary-chart-text" style="margin-left: 2px;">
+                      <div class="d-flex align-items-center">
+                        <div class="input-group" id="income-expense-summary-chart-daterange-modal">
+                          <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
+                          <input type="text" class="form-control">
+                          <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
+                        </div>
+                    </div>
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="from-location" class="col-form-label" style="padding-bottom: 0">From:</label>
-                    <input type="text" class="form-control" id="from-location">
+                    <label for="parking" class="col-form-label" style="padding-bottom: 0">Parking:</label>
+                    <input type="text" class="form-control" id="parking">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="nature" class="col-form-label" style="padding-bottom: 0">Nature:</label>
+                    <input type="text" class="form-control" id="nature">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="to-location" class="col-form-label" style="padding-bottom: 0">To:</label>
-                    <input type="text" class="form-control" id="to-location">
+                    <label for="flight-no" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
+                    <input type="text" class="form-control" id="flight-no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="status" class="col-form-label" style="padding-bottom: 0">Status:</label>
-                    <select class="form-control" id="exampleStatus">
-                      <option>Select</option>
-                      <option>Scheduled</option>
-                      <option>Delayed</option>
-                      <option>Departed</option>
-                      <option>In Air</option>
-                      <option>Landed</option>
-                      <option>Arrived</option>
-                      <option>Cancelled</option>
-                    </select>
+                    <label for="origin" class="col-form-label" style="padding-bottom: 0">Origin:</label>
+                    <input type="text" class="form-control" id="origin">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Gate:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="destination" class="col-form-label" style="padding-bottom: 0">Destination:</label>
+                    <input type="text" class="form-control" id="destination">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="type" class="col-form-label" style="padding-bottom: 0">Type:</label>
+                    <input type="text" class="form-control" id="type">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Departure-Arrival:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="reg-no" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
+                    <input type="text" class="form-control" id="reg-no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="pilot" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
-                    <input type="text" class="form-control" id="pilot">
+                    <label for="owner" class="col-form-label" style="padding-bottom: 0">Owner:</label>
+                    <input type="text" class="form-control" id="owner">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="arrival" class="col-form-label" style="padding-bottom: 0">Arrival:</label>
+                    <input type="text" class="form-control" id="arrival">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="non-revenue" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
+                    <input type="text" class="form-control" id="non-revenue">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="dead-head" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
+                    <input type="text" class="form-control" id="dead-head">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="transit" class="col-form-label" style="padding-bottom: 0">Transit:</label>
+                    <input type="text" class="form-control" id="transit">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="gc-unloaded" class="col-form-label" style="padding-bottom: 0">GC Unloaded:</label>
+                    <input type="text" class="form-control" id="gc-unloaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="gc-loaded" class="col-form-label" style="padding-bottom: 0">GC Loaded:</label>
+                    <input type="text" class="form-control" id="gc-loaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am-unloaded" class="col-form-label" style="padding-bottom: 0">AM Unloaded:</label>
+                    <input type="text" class="form-control" id="am-unloaded">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am-loaded" class="col-form-label" style="padding-bottom: 0">AM Loaded:</label>
+                    <input type="text" class="form-control" id="am-loaded">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="license-no" class="col-form-label" style="padding-bottom: 0">License No.:</label>
+                    <input type="text" class="form-control" id="license-no">
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
-        <!-- Modal Ends -->
+        </div>
 
         <!-- Delete Modal starts -->
         <div class="modal fade" id="exampleModalDeleteFlight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">

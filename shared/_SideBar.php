@@ -9,14 +9,14 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="realtime.php">
-                <span class="menu-title">Realtime</span>
-                <i class="icon-info menu-icon"></i>
+              <a class="nav-link" href="flight_plans.php">
+                <span class="menu-title">Flight Plans</span>
+                <i class="icon-notebook menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="flight_plans.php">
-                <span class="menu-title">Flight Plans</span>
+              <a class="nav-link" href="aircraft_management.php">
+                <span class="menu-title">Aircraft Management</span>
                 <i class="icon-plane menu-icon"></i>
               </a>
             </li>
