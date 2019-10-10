@@ -10,8 +10,7 @@
     readUser();
     // Aircraft API
     createAircraft();
-    fillAircraftCode();
-    // readAircraft();
+    readAircraft();
   });
 })(jQuery);
 
@@ -247,156 +246,38 @@ function createAircraft() {
         },
         error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
-
-    fillAircraftCode();
   })
 }
 
 var aircraft_id_glob;
 function readAircraft() {
-  $.ajax({
-    url: '../api/aircraft/read_sort.php',
-    type: 'POST',
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify({ code: code }),
-    success: function (data) {
-      // $('#full-name-update').val(data[0].full_name);
-      // $('#contact-number-update').val(data[0].contact_number);
-      // $('#address-update').val(data[0].address);
-      // $('#email-update').val(data[0].email);
-      // $('#status-update').val(data[0].status);
-      // $('#exampleModalUpdateUser').modal('show');
-      alert(data[0].id);
-    },
-    error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrongasdsa.'); }
-  });
-  
-  // var dataTableAircraft = $('#dataTableAircraft').DataTable({
-  //   "columnDefs": [
-  //     {
-  //       "targets": 3,
-  //       "sortable": false
-  //     },
-  //     {
-  //       "targets": [0],
-  //       "visible": false,
-  //       "searchable": false
-  //     }
-  //   ],
-  //   data: data,
-  //   columns: [
-  //     { "data": "id" },
-  //     { "data": "reg_no" },
-  //     { "data": "model" },
-  //     {
-  //       data: null,
-  //       defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-aircraft' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-aircraft'><span class='icon-trash' aria-hidden='true'></span></button>"
-  //     }
-  //   ]
-  // });
-
-  // $("#dataTableAircraft").on("click", ".btn-update-aircraft", function(e) {
-  //   aircraft_id_glob = dataTableAircraft.row($(this).parents('tr')).data()["id"];
-  //   $.ajax({
-  //     url: '../api/aircraft/read_single.php',
-  //     type: 'POST',
-  //     contentType: "application/json",
-  //     dataType: "json",
-  //     data: JSON.stringify({ id: aircraft_id_glob }),
-  //     success: function (data) {
-  //       $('#aircraft-name-update').val(data[0].name);
-  //       $('#aircraft-code-update').val(data[0].code);
-  //       $('#reg-no-update').val(data[0].reg_no);
-  //       $('#model-update').val(data[0].model);
-  //       $('#exampleModalUpdateAircraft').modal('show');
-  //     },
-  //     error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
-  //   });
-  // });
-
-  // $("#dataTableAircraft").on("click", ".btn-delete-aircraft", function(e) {
-  //   aircraft_id_glob = dataTableAircraft.row($(this).parents('tr')).data()["id"];
-  //   var full_name = dataTableAircraft.row($(this).parents('tr')).data()["reg_no"];
-  //   $('#exampleModalDeleteAircraft').find('.modal-body-delete').append('Are you sure you want to delete aircraft <strong>' + full_name + '</strong>?');
-  //   $('#exampleModalDeleteAircraft').modal('show');
-  // });
-
-  // $('#exampleModalDeleteAircraft').on('hidden.bs.modal', function () {
-  //   $('#exampleModalDeleteAircraft').find('.modal-body-delete').text('');
-  // })
-}
-
-function fillAircraftCode() {
-  $('#sort_aircraft_code').empty()
-  var dropDown = document.getElementById("sort_aircraft_code");
-  $.ajax({
-    type: "GET",
-    url: '../api/aircraft/read.php',
-    success: function(data) {
-      var s;
-      var strArray = []
-      for (var i = 0; i < data.length; i++) {
-        if(i == 0){
-          $('#sort_aircraft_name').html(data[i].name);
-          sortAircraftByCode(data[i].code);
-        }
-        var value = '<option value="' + data[i].name + '">' + data[i].code + '</option>';
-        if (strArray.includes(value) === false) strArray.push(value);
+  var dataTableAircraft = $('#dataTableAircraft').DataTable({
+    "columnDefs": [
+      {
+        "targets": 3,
+        "sortable": false
+      },
+      {
+        "targets": [0],
+        "visible": false,
+        "searchable": false
       }
-      console.log(strArray) 
-      $("#sort_aircraft_code").html(strArray);
-    }
-  });
-
-  $("#sort_aircraft_code").change(function () {
-    $('#sort_aircraft_name').html(document.getElementById("sort_aircraft_code").value);
-    sortAircraftByCode($("#sort_aircraft_code option:selected" ).text());
-  });  
-}
-
-function sortAircraftByCode(code) {
-  var dataTableAircraft;
-  $.ajax({
-    url: '../api/aircraft/read_sort.php',
-    type: 'POST',
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify({ code: code }),
-    success: function (data) {
-      // $('#full-name-update').val(data[0].full_name);
-      // $('#contact-number-update').val(data[0].contact_number);
-      // $('#address-update').val(data[0].address);
-      // $('#email-update').val(data[0].email);
-      // $('#status-update').val(data[0].status);
-      // $('#exampleModalUpdateUser').modal('show');
-      
-      dataTableAircraft = $('#dataTableAircraft').DataTable({
-        "columnDefs": [
-          {
-            "targets": 3,
-            "sortable": false
-          },
-          {
-            "targets": [0],
-            "visible": false,
-            "searchable": false
-          }
-        ],
-        data: data,
-        columns: [
-          { "data": "id" },
-          { "data": "reg_no" },
-          { "data": "model" },
-          {
-            data: null,
-            defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-aircraft' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-aircraft'><span class='icon-trash' aria-hidden='true'></span></button>"
-          }
-        ],
-        "bDestroy": true
-      });
+    ],
+    "ajax": {
+      url: '../api/aircraft/read.php',
+      dataSrc: ""
     },
-    error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrongasdsa.'); }
+    columns: [
+      { "data": "id" },
+      { "data": "code" },
+      { "data": "name" },
+      { "data": "reg_no" },
+      { "data": "model" },
+      {
+        data: null,
+        defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-aircraft' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-aircraft'><span class='icon-trash' aria-hidden='true'></span></button>"
+      }
+    ]
   });
 
   $("#dataTableAircraft").on("click", ".btn-update-aircraft", function(e) {

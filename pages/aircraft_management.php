@@ -10,19 +10,21 @@
               <span class="float-sm-right"><button type="button" class="btn btn-rounded btn-dark btn-fw" style="color: #38ce3c" data-toggle="modal" data-target="#exampleModalAddAircraft">Add Aircraft</button></span>
             </div>
             <div class="card-body">
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <label for="sort_aircraft_code">Aircraft Code:</label>
 
                 <select id="sort_aircraft_code" name="sort_aircraft_code">
                 </select>
                 <br/>
                 <label for="sort_aircraft_name">Aircraft Name: <strong id="sort_aircraft_name">Omni Aviation</strong></label>
-              </div>
+              </div> -->
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTableAircraft" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>ID</th>
+                      <th>Code</th>
+                      <th>Name</th>
                       <th>Registration No.</th>
                       <th>Model</th>
                       <th>Action</th>
