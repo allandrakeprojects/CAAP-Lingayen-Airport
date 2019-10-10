@@ -11,40 +11,23 @@
             </div>
             <div class="card-body">
               <div class="mb-4">
-                <label for="business">Aircraft Code:</label>
+                <label for="sort_aircraft_code">Aircraft Code:</label>
 
-                <select id="business" name="business">
-                  <option value="First Choice">OMNI (RPLC)</option>
-                  <option value="Second Choice">AAAA (RPUI)</option>
-                  <option value="Third Choice">LEIA (RPUS)</option>
-                  <option value="Fourth Choice">WCC (BINA)</option>
+                <select id="sort_aircraft_code" name="sort_aircraft_code">
                 </select>
                 <br/>
-                <label for="business">Aircraft Name: <strong>Omni Aviation</strong></label>
+                <label for="sort_aircraft_name">Aircraft Name: <strong id="sort_aircraft_name">Omni Aviation</strong></label>
               </div>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTableAircraft" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>ID</th>
                       <th>Registration No.</th>
                       <th>Model</th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>CX7183</td>
-                      <td>Philippines</td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;" data-toggle="modal" data-target="#exampleModalUpdateAircraft" data-whatever="@fat">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm" data-toggle="modal"  data-target="#exampleModalDeleteAircraft">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
                 </table>
               </div>
             </div>
@@ -65,25 +48,25 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Aircraft Code:</label>
-                    <input type="text" class="form-control" id="flight-name">
+                    <label for="aircraft-code" class="col-form-label" style="padding-bottom: 0">Aircraft Code:</label>
+                    <input type="text" class="form-control" id="aircraft-code">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="from-location" class="col-form-label" style="padding-bottom: 0">Aircraft Name:</label>
-                    <input type="text" class="form-control" id="from-location">
+                    <label for="aircraft-name" class="col-form-label" style="padding-bottom: 0">Aircraft Name:</label>
+                    <input type="text" class="form-control" id="aircraft-name">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="to-location" class="col-form-label" style="padding-bottom: 0">Registration No.:</label>
-                    <input type="text" class="form-control" id="to-location">
+                    <label for="reg-no" class="col-form-label" style="padding-bottom: 0">Registration No.:</label>
+                    <input type="text" class="form-control" id="reg-no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Model:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="model" class="col-form-label" style="padding-bottom: 0">Model:</label>
+                    <input type="text" class="form-control" id="model">
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
+                <button type="button" class="btn btn-dark btn-add-aircraft" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -104,25 +87,25 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Aircraft Code:</label>
-                    <input type="text" class="form-control" id="flight-name">
+                    <label for="aircraft-code-update" class="col-form-label" style="padding-bottom: 0">Aircraft Code:</label>
+                    <input type="text" class="form-control" id="aircraft-code-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="from-location" class="col-form-label" style="padding-bottom: 0">Aircraft Name:</label>
-                    <input type="text" class="form-control" id="from-location">
+                    <label for="aircraft-name-update" class="col-form-label" style="padding-bottom: 0">Aircraft Name:</label>
+                    <input type="text" class="form-control" id="aircraft-name-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="to-location" class="col-form-label" style="padding-bottom: 0">Registration No.:</label>
-                    <input type="text" class="form-control" id="to-location">
+                    <label for="reg-no-update" class="col-form-label" style="padding-bottom: 0">Registration No.:</label>
+                    <input type="text" class="form-control" id="reg-no-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gate" class="col-form-label" style="padding-bottom: 0">Model:</label>
-                    <input type="text" class="form-control" id="gate">
+                    <label for="model-update" class="col-form-label" style="padding-bottom: 0">Model:</label>
+                    <input type="text" class="form-control" id="model-update">
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary btn-update-aircraft-modal">Update</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -140,11 +123,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" style="padding: 15px 30px">
-                <p>Are you sure you want to delete this aircraft?</p>
+              <div class="modal-body modal-body-delete" style="padding: 15px 30px">
+                <p></p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-delete-aircraft-modal">Delete</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>

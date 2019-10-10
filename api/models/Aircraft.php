@@ -55,7 +55,7 @@
       }
     }
 
-    // POST api/aircraft/update
+    // PUT api/aircraft/update
     public function update() {
       $query = 'UPDATE ' . $this->table_aircraft . ' SET name = :name, code = :code, reg_no = :reg_no, model = :model WHERE id = :id';
       $stmt = $this->conn->prepare($query);
@@ -77,7 +77,7 @@
       }
     }
 
-    // GET api/aircraft/delete
+    // POST api/aircraft/delete
     public function delete() {
       $query = 'DELETE FROM ' . $this->table_aircraft . ' WHERE id = :id';
       $stmt = $this->conn->prepare($query);
@@ -88,6 +88,20 @@
 
       if($stmt->execute()) {
         return true;
+      }
+    }
+
+    // GET api/aircraft/read_sort
+    public function read_sort() {
+      $query = 'SELECT * FROM ' . $this->table_aircraft . ' WHERE code = :code';
+      $stmt = $this->conn->prepare($query);
+
+      $this->code = htmlspecialchars(strip_tags($this->code));
+
+      $stmt->bindParam(':code', $this->code);
+
+      if($stmt->execute()) {
+        return $stmt;
       }
     }
   }

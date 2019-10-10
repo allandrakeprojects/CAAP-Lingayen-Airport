@@ -61,7 +61,7 @@
       }
     }
 
-    // POST api/user/update
+    // PUT api/user/update
     public function update() {
       $query = 'UPDATE ' . $this->table_user . ' SET full_name = :full_name, contact_number = :contact_number, address = :address, email = :email, password = :password, status = :status WHERE id = :id';
       $stmt = $this->conn->prepare($query);
@@ -87,7 +87,7 @@
       }
     }
 
-    // GET api/user/delete
+    // POST api/user/delete
     public function delete() {
       $query = 'DELETE FROM ' . $this->table_user . ' WHERE id = :id';
       $stmt = $this->conn->prepare($query);
