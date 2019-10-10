@@ -11,36 +11,22 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTableUser" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>ID</th>
                       <th>Full name</th>
                       <th>Contact Number</th>
                       <th>Address</th>
                       <th>Email</th>
-                      <th>Type</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>User</th>
-                      <th>To</th>
-                      <th>From</th>
-                      <th>Status</th>
-                      <th>Gate</th>
-                      <th>Departure</th>
-                      <th>Arrival</th>
-                      <th>Pilot</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot> -->
-                  <tbody>
+                  <!-- <tbody>
                     <tr>
                       <td style="font-weight:bold">John Doe</td>
                       <td >Philippines</td>
-                      <td>Bermuda Triangle</td>
                       <td>Bermuda Triangle</td>
                       <td>Passenger</td>
                       <td><label class="badge badge-danger">Inactive</label></td>
@@ -53,103 +39,7 @@
                         </button>
                       </td>
                     </tr>
-                    <tr>
-                      <td style="font-weight:bold">Janny</td>
-                      <td>Philippines</td>
-                      <td>Black Hole</td>
-                      <td>Black Hole</td>
-                      <td>Pilot</td>
-                      <td><label class="badge badge-success">Active</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Foe</td>
-                      <td>Philippines</td>
-                      <td>Bermuda Triangle</td>
-                      <td>Diyan lang</td>
-                      <td>Pilot</td>
-                      <td><label class="badge badge-success">Active</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Smith</td>
-                      <td>Philippines</td>
-                      <td>Kahit saan</td>
-                      <td>Bermuda Triangle</td>
-                      <td>Passenger</td>
-                      <td><label class="badge badge-danger">Inactive</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">John Smith</td>
-                      <td>Philippines</td>
-                      <td>Antartic</td>
-                      <td>Bermuda Triangle</td>
-                      <td>Passenger</td>
-                      <td><label class="badge badge-danger">Inactive</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Janny Smith</td>
-                      <td>Philippines</td>
-                      <td>Ocean</td>
-                      <td>Bermuda Triangle</td>
-                      <td>Pilot</td>
-                      <td><label class="badge badge-success">Arrived</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Janny Doe</td>
-                      <td>Philippines</td>
-                      <td>Deep web</td>
-                      <td>Bermuda Triangle</td>
-                      <td>Pilot</td>
-                      <td><label class="badge badge-danger">Inactive</label></td>
-                      <td>
-                        <button type="button" class="btn btn-primary btn-rounded btn-sm dt-edit" style="margin-right:5px;">
-                            <span class="icon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-rounded btn-sm">
-                            <span class="icon-trash" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
             </div>
@@ -182,13 +72,16 @@
                     <input type="text" class="form-control" id="address">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="type" class="col-form-label" style="padding-bottom: 0">Type:</label>
-                    <input type="text" class="form-control" id="type">
+                    <label for="email" class="col-form-label" style="padding-bottom: 0">Email:</label>
+                    <input type="text" class="form-control" id="email">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="password" class="col-form-label" style="padding-bottom: 0">Password:</label>
+                    <input type="password" class="form-control" id="password">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="status" class="col-form-label" style="padding-bottom: 0">Status:</label>
-                    <select class="form-control" id="exampleStatus">
-                      <option>Select</option>
+                    <select class="form-control" id="status">
                       <option>Active</option>
                       <option>Inactive</option>
                     </select>
@@ -196,7 +89,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
+                <button type="button" class="btn btn-dark btn-add-user" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -217,25 +110,28 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="full-name" class="col-form-label" style="padding-bottom: 0">Full name:</label>
-                    <input type="text" class="form-control" id="full-name">
+                    <label for="full-name-update" class="col-form-label" style="padding-bottom: 0">Full name:</label>
+                    <input type="text" class="form-control" id="full-name-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="contact-number" class="col-form-label" style="padding-bottom: 0">Contact Number:</label>
-                    <input type="text" class="form-control" id="contact-number">
+                    <label for="contact-number-update" class="col-form-label" style="padding-bottom: 0">Contact Number:</label>
+                    <input type="text" class="form-control" id="contact-number-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="address" class="col-form-label" style="padding-bottom: 0">Address:</label>
-                    <input type="text" class="form-control" id="address">
+                    <label for="address-update" class="col-form-label" style="padding-bottom: 0">Address:</label>
+                    <input type="text" class="form-control" id="address-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="type" class="col-form-label" style="padding-bottom: 0">Type:</label>
-                    <input type="text" class="form-control" id="type">
+                    <label for="email-update" class="col-form-label" style="padding-bottom: 0">Email:</label>
+                    <input type="text" class="form-control" id="email-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="status" class="col-form-label" style="padding-bottom: 0">Status:</label>
-                    <select class="form-control" id="exampleStatus">
-                      <option>Select</option>
+                    <label for="password-update" class="col-form-label" style="padding-bottom: 0">Password:</label>
+                    <input type="password" class="form-control" id="password-update" value="123456">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="status-update" class="col-form-label" style="padding-bottom: 0">Status:</label>
+                    <select class="form-control" id="status-update">
                       <option>Active</option>
                       <option>Inactive</option>
                     </select>
@@ -243,7 +139,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary btn-update-user-modal">Update</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -261,11 +157,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" style="padding: 15px 30px">
-                <p>Are you sure you want to delete this user?</p>
+              <div class="modal-body modal-body-delete" style="padding: 15px 30px">
+                <p></p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-delete-user-modal">Delete</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>

@@ -208,7 +208,7 @@
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" style="padding-right: 0">
                 <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
@@ -218,6 +218,7 @@
         </div>
         <!-- Modal Ends -->
 
+        <!-- Update Modal starts -->
         <div class="modal fade" id="exampleModalUpdateFlight" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -315,14 +316,15 @@
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
+              <div class="modal-footer" style="padding-right: 0">
+                <button type="button" class="btn btn-primary">Update</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
         </div>
+        <!-- Modal Ends -->
 
         <!-- Delete Modal starts -->
         <div class="modal fade" id="exampleModalDeleteFlight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
