@@ -17,10 +17,10 @@
   
   if($user->delete()) {
     echo json_encode(
-      array('message' => 'User Deleted')
+      array('status' => 'ok')
     );
   } else {
     echo json_encode(
-      array('message' => 'User Not Delete')
+      array('status' => 'failed')
     );
   }

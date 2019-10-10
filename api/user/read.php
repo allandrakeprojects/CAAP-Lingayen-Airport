@@ -12,7 +12,7 @@
   $num = $result->rowCount();
   
   if($num > 0) {
-    $users_arr = array();
+    $user_arr = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
       $user_item = array(
@@ -23,9 +23,9 @@
         'email' => $email,
         'status' => ($status == '1') ? '<label class="badge badge-success">Active</label>' : '<label class="badge badge-danger">Inactive</label>',
       );
-      array_push($users_arr, $user_item);
+      array_push($user_arr, $user_item);
     }
-    echo json_encode($users_arr);
+    echo json_encode($user_arr);
   } else {
     echo json_encode(
       array('message' => 'No Users Found')

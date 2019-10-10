@@ -6,29 +6,16 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
   include_once '../config/Database.php';
-  include_once '../models/User.php';
+  include_once '../models/Aircraft.php';
 
   $database = new Database();
   $db = $database->connect();
 
-  $user = new User($db);
-
+  $aircraft = new Aircraft($db);
   $data = json_decode(file_get_contents("php://input"));
-  $user->id = $data->id;
-  $user->full_name = $data->full_name;
-  $user->contact_number = $data->contact_number;
-  $user->address = $data->address;
-  $user->email = $data->email;
-  if($data->status == 'Active'){
-    $user->status = '1';
-  } else {
-    $user->status = '0';
-  }
+  $aircraft->id = $data->id;
   
-  $hash = password_hash($data->password, PASSWORD_BCRYPT);
-  $user->password = $hash;
-
-  if($user->update()) {
+  if($aircraft->delete()) {
     echo json_encode(
       array('status' => 'ok')
     );

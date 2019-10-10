@@ -29,10 +29,10 @@
 
   if($user->create()) {
     echo json_encode(
-      array('message' => 'User Created')
+      array('status' => 'ok')
     );
   } else {
     echo json_encode(
-      array('message' => 'User Not Create')
+      array('status' => 'failed')
     );
   }
