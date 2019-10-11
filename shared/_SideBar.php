@@ -23,7 +23,7 @@
             <?php if($_SESSION["type"] == 0) { ?>
               <li class="nav-item">
                 <a class="nav-link" href="flight_plans.php">
-                  <span class="menu-title">Flight Plans</span>
+                  <span class="menu-title">Flights</span>
                   <i class="icon-notebook menu-icon"></i>
                 </a>
               </li>
@@ -37,6 +37,12 @@
                 <a class="nav-link" href="user_management.php">
                   <span class="menu-title">User Management</span>
                   <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="time_management.php">
+                  <span class="menu-title">Time Management</span>
+                  <i class="icon-hourglass menu-icon"></i>
                 </a>
               </li>
             <?php } else { ?>

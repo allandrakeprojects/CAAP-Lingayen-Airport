@@ -12493,7 +12493,8 @@ dl {
             position: absolute;
             font-size: 0.9rem;
             margin-top: 0;
-            padding: 0; }
+            padding: 0;
+            left: -89px; }
             .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item {
               margin-bottom: 0;
               padding: 11px 13px;

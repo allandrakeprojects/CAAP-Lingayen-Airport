@@ -2,6 +2,7 @@
   class Aircraft {
     private $conn;
     private $table_aircraft = 'aircraft';
+    public $table_aircraft_time = 'time';
 
     public $id;
     public $name;
@@ -85,6 +86,22 @@
       $this->id = htmlspecialchars(strip_tags($this->id));
 
       $stmt->bindParam(':id', $this->id);
+
+      if($stmt->execute()) {
+        return true;
+      }
+    }
+
+    // POST api/aircraft/time
+    public function time() {
+      $query = 'INSERT INTO ' . $this->table_aircraft_time . ' SET aircraft = :aircraft, status = :status';
+      $stmt = $this->conn->prepare($query);
+
+      $this->aircraft = htmlspecialchars(strip_tags($this->aircraft));
+      $this->status = htmlspecialchars(strip_tags($this->status));
+
+      $stmt->bindParam(':aircraft', $this->aircraft);
+      $stmt->bindParam(':status', $this->status);
 
       if($stmt->execute()) {
         return true;
