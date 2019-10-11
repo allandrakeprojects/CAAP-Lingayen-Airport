@@ -1,4 +1,4 @@
-<?php 
+<?php
   class Aircraft {
     private $conn;
     private $table_aircraft = 'aircraft';
@@ -88,20 +88,6 @@
 
       if($stmt->execute()) {
         return true;
-      }
-    }
-
-    // GET api/aircraft/read_sort
-    public function read_sort() {
-      $query = 'SELECT * FROM ' . $this->table_aircraft . ' WHERE code = :code';
-      $stmt = $this->conn->prepare($query);
-
-      $this->code = htmlspecialchars(strip_tags($this->code));
-
-      $stmt->bindParam(':code', $this->code);
-
-      if($stmt->execute()) {
-        return $stmt;
       }
     }
   }

@@ -10,7 +10,7 @@
               <span class="float-sm-right"><button type="button" class="btn btn-rounded btn-dark btn-fw" style="color: #38ce3c" data-toggle="modal" data-target="#exampleModalAddFlight">Add Flight</button></span>
             </div>
             <div class="card-body">
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <div class="row income-expense-summary-chart-text">
                   <div class="col-md-6 col-xl-4 d-flex align-items-center">
                     <div class="input-group" id="income-expense-summary-chart-daterange">
@@ -20,11 +20,12 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center">
+                <table class="table table-bordered" id="dataTableFlight" width="100%" cellspacing="0" style="text-align: center">
                   <thead>
                     <tr>
+                        <th style="vertical-align: middle" rowspan="3">ID</th>
                         <th style="vertical-align: middle" rowspan="3">Date</th>
                         <th colspan="3">Time of Operation</th>
                         <th colspan="4">Flight Particulars</th>
@@ -34,8 +35,8 @@
                         <th style="vertical-align: middle" rowspan="3">Action</th>
                     </tr>
                     <tr>
-                        <th style="vertical-align: middle" rowspan="2">Landing</th>
                         <th style="vertical-align: middle" rowspan="2">Take-Off</th>
+                        <th style="vertical-align: middle" rowspan="2">Landing</th>
                         <th style="vertical-align: middle" rowspan="2">Parking</th>
                         <th style="vertical-align: middle" rowspan="2">Nature</th>
                         <th style="vertical-align: middle" rowspan="2">Flight No.</th>
@@ -72,7 +73,7 @@
                       <th>Action</th>
                     </tr>
                   </tfoot> -->
-                  <tbody>
+                  <!-- <tbody>
                     <tr>
                       <td style="font-weight:bold">CX7183</td>
                       <td >Philippines</td>
@@ -102,7 +103,7 @@
                         </button>
                       </td>
                     </tr>
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
             </div>
@@ -123,12 +124,21 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Landing and Take-Off:</label>
+                    <label for="airline_name" class="col-form-label" style="padding-bottom: 0">Airline Name:</label>
+                    <input type="text" class="form-control" id="airline_name">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="classification" class="col-form-label" style="padding-bottom: 0">Classification:</label>
+                    <input type="text" class="form-control" id="classification">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Take-Off and Landing:</label>
                     <div class="row income-expense-summary-chart-text" style="margin-left: 2px;">
                       <div class="d-flex align-items-center">
                         <div class="input-group" id="income-expense-summary-chart-daterange-modal">
                           <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" style="width: 320px;" id="take_off_landing">
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
                     </div>
@@ -143,8 +153,8 @@
                     <input type="text" class="form-control" id="nature">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-no" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
-                    <input type="text" class="form-control" id="flight-no">
+                    <label for="flight_no" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
+                    <input type="text" class="form-control" id="flight_no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="origin" class="col-form-label" style="padding-bottom: 0">Origin:</label>
@@ -160,8 +170,8 @@
                     <input type="text" class="form-control" id="type">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="reg-no" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
-                    <input type="text" class="form-control" id="reg-no">
+                    <label for="reg_no" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
+                    <input type="text" class="form-control" id="reg_no">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="owner" class="col-form-label" style="padding-bottom: 0">Owner:</label>
@@ -173,12 +183,12 @@
                     <input type="text" class="form-control" id="arrival">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="non-revenue" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
-                    <input type="text" class="form-control" id="non-revenue">
+                    <label for="non_revenue" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
+                    <input type="text" class="form-control" id="non_revenue">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="dead-head" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
-                    <input type="text" class="form-control" id="dead-head">
+                    <label for="dead_head" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
+                    <input type="text" class="form-control" id="dead_head">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="transit" class="col-form-label" style="padding-bottom: 0">Transit:</label>
@@ -186,30 +196,30 @@
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gc-unloaded" class="col-form-label" style="padding-bottom: 0">GC Unloaded:</label>
-                    <input type="text" class="form-control" id="gc-unloaded">
+                    <label for="gc_unloaded" class="col-form-label" style="padding-bottom: 0">General Cargo Unloaded:</label>
+                    <input type="text" class="form-control" id="gc_unloaded">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gc-loaded" class="col-form-label" style="padding-bottom: 0">GC Loaded:</label>
-                    <input type="text" class="form-control" id="gc-loaded">
+                    <label for="gc_loaded" class="col-form-label" style="padding-bottom: 0">General Cargo Loaded:</label>
+                    <input type="text" class="form-control" id="gc_loaded">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="am-unloaded" class="col-form-label" style="padding-bottom: 0">AM Unloaded:</label>
-                    <input type="text" class="form-control" id="am-unloaded">
+                    <label for="am_unloaded" class="col-form-label" style="padding-bottom: 0">Air Mail Unloaded:</label>
+                    <input type="text" class="form-control" id="am_unloaded">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="am-loaded" class="col-form-label" style="padding-bottom: 0">AM Loaded:</label>
-                    <input type="text" class="form-control" id="am-loaded">
+                    <label for="am_loaded" class="col-form-label" style="padding-bottom: 0">Air Mail Loaded:</label>
+                    <input type="text" class="form-control" id="am_loaded">
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="license-no" class="col-form-label" style="padding-bottom: 0">License No.:</label>
-                    <input type="text" class="form-control" id="license-no">
+                    <label for="license_no" class="col-form-label" style="padding-bottom: 0">License No.:</label>
+                    <input type="text" class="form-control" id="license_no">
                   </div>
                 </form>
               </div>
               <div class="modal-footer" style="padding-right: 0">
-                <button type="button" class="btn btn-dark" style="color: #38ce3c">Add</button>
+                <button type="button" class="btn btn-dark btn-add-flight" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -231,93 +241,102 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Landing and Take-Off:</label>
+                    <label for="airline_name_update" class="col-form-label" style="padding-bottom: 0">Airline Name:</label>
+                    <input type="text" class="form-control" id="airline_name_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="classification_update" class="col-form-label" style="padding-bottom: 0">Classification:</label>
+                    <input type="text" class="form-control" id="classification_update">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="flight-name" class="col-form-label" style="padding-bottom: 0">Take-Off and Landing:</label>
                     <div class="row income-expense-summary-chart-text" style="margin-left: 2px;">
                       <div class="d-flex align-items-center">
-                        <div class="input-group" id="income-expense-summary-chart-daterange-modal">
+                        <div class="input-group" id="income-expense-summary-chart-daterange-update-modal">
                           <div class="inpu-group-prepend input-group-text"><i class="icon-calendar"></i></div>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" style="width: 320px;" id="take_off_landing_update">
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
                     </div>
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="parking" class="col-form-label" style="padding-bottom: 0">Parking:</label>
-                    <input type="text" class="form-control" id="parking">
+                    <label for="parking_update" class="col-form-label" style="padding-bottom: 0">Parking:</label>
+                    <input type="text" class="form-control" id="parking_update">
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="nature" class="col-form-label" style="padding-bottom: 0">Nature:</label>
-                    <input type="text" class="form-control" id="nature">
+                    <label for="nature_update" class="col-form-label" style="padding-bottom: 0">Nature:</label>
+                    <input type="text" class="form-control" id="nature_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="flight-no" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
-                    <input type="text" class="form-control" id="flight-no">
+                    <label for="flight_no_update" class="col-form-label" style="padding-bottom: 0">Flight No.:</label>
+                    <input type="text" class="form-control" id="flight_no_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="origin" class="col-form-label" style="padding-bottom: 0">Origin:</label>
-                    <input type="text" class="form-control" id="origin">
+                    <label for="origin_update" class="col-form-label" style="padding-bottom: 0">Origin:</label>
+                    <input type="text" class="form-control" id="origin_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="destination" class="col-form-label" style="padding-bottom: 0">Destination:</label>
-                    <input type="text" class="form-control" id="destination">
-                  </div>
-                  <hr>
-                  <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="type" class="col-form-label" style="padding-bottom: 0">Type:</label>
-                    <input type="text" class="form-control" id="type">
-                  </div>
-                  <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="reg-no" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
-                    <input type="text" class="form-control" id="reg-no">
-                  </div>
-                  <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="owner" class="col-form-label" style="padding-bottom: 0">Owner:</label>
-                    <input type="text" class="form-control" id="owner">
+                    <label for="destination_update" class="col-form-label" style="padding-bottom: 0">Destination:</label>
+                    <input type="text" class="form-control" id="destination_update">
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="arrival" class="col-form-label" style="padding-bottom: 0">Arrival:</label>
-                    <input type="text" class="form-control" id="arrival">
+                    <label for="type_update" class="col-form-label" style="padding-bottom: 0">Type:</label>
+                    <input type="text" class="form-control" id="type_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="non-revenue" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
-                    <input type="text" class="form-control" id="non-revenue">
+                    <label for="reg_no_update" class="col-form-label" style="padding-bottom: 0">Reg. No.:</label>
+                    <input type="text" class="form-control" id="reg_no_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="dead-head" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
-                    <input type="text" class="form-control" id="dead-head">
-                  </div>
-                  <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="transit" class="col-form-label" style="padding-bottom: 0">Transit:</label>
-                    <input type="text" class="form-control" id="transit">
+                    <label for="owner_update" class="col-form-label" style="padding-bottom: 0">Owner:</label>
+                    <input type="text" class="form-control" id="owner_update">
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gc-unloaded" class="col-form-label" style="padding-bottom: 0">GC Unloaded:</label>
-                    <input type="text" class="form-control" id="gc-unloaded">
+                    <label for="arrival_update" class="col-form-label" style="padding-bottom: 0">Arrival:</label>
+                    <input type="text" class="form-control" id="arrival_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="gc-loaded" class="col-form-label" style="padding-bottom: 0">GC Loaded:</label>
-                    <input type="text" class="form-control" id="gc-loaded">
+                    <label for="non_revenue_update" class="col-form-label" style="padding-bottom: 0">Non-Revenue:</label>
+                    <input type="text" class="form-control" id="non_revenue_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="am-unloaded" class="col-form-label" style="padding-bottom: 0">AM Unloaded:</label>
-                    <input type="text" class="form-control" id="am-unloaded">
+                    <label for="dead_head_update" class="col-form-label" style="padding-bottom: 0">Dead head:</label>
+                    <input type="text" class="form-control" id="dead_head_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="am-loaded" class="col-form-label" style="padding-bottom: 0">AM Loaded:</label>
-                    <input type="text" class="form-control" id="am-loaded">
+                    <label for="transit_update" class="col-form-label" style="padding-bottom: 0">Transit:</label>
+                    <input type="text" class="form-control" id="transit_update">
                   </div>
                   <hr>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="license-no" class="col-form-label" style="padding-bottom: 0">License No.:</label>
-                    <input type="text" class="form-control" id="license-no">
+                    <label for="gc_unloaded_update" class="col-form-label" style="padding-bottom: 0">General Cargo Unloaded:</label>
+                    <input type="text" class="form-control" id="gc_unloaded_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="gc_loaded_update" class="col-form-label" style="padding-bottom: 0">General Cargo Loaded:</label>
+                    <input type="text" class="form-control" id="gc_loaded_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am_unloaded_update" class="col-form-label" style="padding-bottom: 0">Air Mail Unloaded:</label>
+                    <input type="text" class="form-control" id="am_unloaded_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="am_loaded_update" class="col-form-label" style="padding-bottom: 0">Air Mail Loaded:</label>
+                    <input type="text" class="form-control" id="am_loaded_update">
+                  </div>
+                  <hr>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="license_no_update" class="col-form-label" style="padding-bottom: 0">License No.:</label>
+                    <input type="text" class="form-control" id="license_no_update">
                   </div>
                 </form>
               </div>
               <div class="modal-footer" style="padding-right: 0">
-                <button type="button" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-primary btn-update-flight-modal">Update</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -340,7 +359,7 @@
                 <p>Are you sure you want to delete this flight?</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-delete-flight-modal">Delete</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>

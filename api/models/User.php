@@ -1,7 +1,7 @@
 <?php 
   class User {
     private $conn;
-    private $table_user = 'users';
+    private $table_user = 'user';
 
     public $id;
     public $full_name;

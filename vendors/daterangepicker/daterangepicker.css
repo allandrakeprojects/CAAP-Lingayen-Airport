@@ -96,6 +96,10 @@
   display: none;
 }
 
+.daterangepicker.show-calendar {
+  width: 362px;
+}
+
 .daterangepicker.show-calendar .drp-calendar {
   display: block;
 }
