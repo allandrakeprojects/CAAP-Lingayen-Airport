@@ -10,14 +10,26 @@
           <ul class="navbar-nav navbar-nav-right ml-auto">
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <span class="font-weight-normal"> Henry Klein </span></a>
+                <span class="font-weight-normal"> 
+                  <?php
+                    echo $_SESSION["full_name"];
+                  ?>
+                 </span></a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
-                  <p class="mb-1 mt-3">Allen Moreno</p>
-                  <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
+                  <p class="mb-1 mt-3">
+                    <?php
+                      echo $_SESSION["full_name"];
+                    ?>
+                  </p>
+                  <p class="font-weight-light text-muted mb-0">
+                    <?php
+                      echo $_SESSION["email"];
+                    ?>
+                  </p>
                 </div>
                 <!-- <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a> -->
-                <a class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
+                <a href="logout.php" class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
               </div>
             </li>
           </ul>

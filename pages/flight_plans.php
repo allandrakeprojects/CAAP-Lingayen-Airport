@@ -7,7 +7,11 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between" style="align-items: center">
               <h4 class="m-0 font-weight-bold" style="color: #38ce3c">Flight Plans </h4>
-              <span class="float-sm-right"><button type="button" class="btn btn-rounded btn-dark btn-fw" style="color: #38ce3c" data-toggle="modal" data-target="#exampleModalAddFlight">Add Flight</button></span>
+              <?php 
+                if($_SESSION['type'] == 0) {
+                  echo "<span class='float-sm-right'><button type='button' class='btn btn-rounded btn-dark btn-fw' style='color: #38ce3c' data-toggle='modal' data-target='#exampleModalAddFlight'>Add Flight</button></span>";
+                }
+              ?>
             </div>
             <div class="card-body">
               <!-- <div class="mb-4">
@@ -32,7 +36,11 @@
                         <th colspan="3">Aircraft Particulars</th>
                         <th colspan="4">Passenger Traffic</th>
                         <th colspan="4">Freight Traffic</th>
-                        <th style="vertical-align: middle" rowspan="3">Action</th>
+                        <?php 
+                          if($_SESSION['type'] == 0) {
+                            echo "<th style='vertical-align: middle' rowspan='3'>Action</th>";
+                          }
+                        ?>
                     </tr>
                     <tr>
                         <th style="vertical-align: middle" rowspan="2">Take-Off</th>

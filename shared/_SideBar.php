@@ -3,28 +3,49 @@
             <li class="nav-item nav-profile">
               <a href="#" class="nav-link" style="cursor: default;">
                 <div class="text-wrapper">
-                  <p class="profile-name">Allen Moreno</p>
-                  <p class="designation">Administrator</p>
+                  <p class="profile-name">
+                    <?php
+                      echo $_SESSION["full_name"];
+                    ?>
+                  </p>
+                  <p class="designation" id="user_type">
+                    <?php
+                      if($_SESSION["type"] == 0) {
+                        echo 'Administrator';
+                      } else {
+                        echo 'Pilot';
+                      }
+                    ?>
+                  </p>
                 </div>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="flight_plans.php">
-                <span class="menu-title">Flight Plans</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="aircraft_management.php">
-                <span class="menu-title">Aircraft Management</span>
-                <i class="icon-plane menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="user_management.php">
-                <span class="menu-title">User Management</span>
-                <i class="icon-user menu-icon"></i>
-              </a>
-            </li>
+            <?php if($_SESSION["type"] == 0) { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="flight_plans.php">
+                  <span class="menu-title">Flight Plans</span>
+                  <i class="icon-notebook menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="aircraft_management.php">
+                  <span class="menu-title">Aircraft Management</span>
+                  <i class="icon-plane menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="user_management.php">
+                  <span class="menu-title">User Management</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+            <?php } else { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="flight_plans.php">
+                  <span class="menu-title">Flight Plans</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+            <?php } ?>
           </ul>
         </nav>

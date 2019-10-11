@@ -7,6 +7,7 @@
     // User API
     createUser();
     readUser();
+    loginUser();
     // Aircraft API
     createAircraft();
     readAircraft();
@@ -279,49 +280,88 @@ function createFlight() {
 
 var flight_id_glob;
 function readFlight() {
-  var dataTableFlight = $('#dataTableFlight').DataTable({
-    "columnDefs": [
-      {
-        "targets": 7,
-        "sortable": false
+  var dataTableFlight;
+  if($('#user_type').text().trim() == 'Administrator'){
+    dataTableFlight = $('#dataTableFlight').DataTable({
+      "columnDefs": [
+        {
+          "targets": 7,
+          "sortable": false
+        },
+        {
+          "targets": 0,
+          "visible": false,
+          "searchable": false
+        }
+      ],
+      "ajax": {
+        url: '../api/flight/read.php',
+        dataSrc: ""
       },
-      {
-        "targets": 0,
-        "visible": false,
-        "searchable": false
-      }
-    ],
-    "ajax": {
-      url: '../api/flight/read.php',
-      dataSrc: ""
-    },
-    columns: [
-      { "data": "id" },
-      { "data": "date_created" },
-      { "data": "take_off" },
-      { "data": "landing" },
-      { "data": "parking" },
-      { "data": "nature" },
-      { "data": "flight_no" },
-      { "data": "origin" },
-      { "data": "destination" },
-      { "data": "type" },
-      { "data": "reg_no" },
-      { "data": "owner" },
-      { "data": "arrival" },
-      { "data": "non_revenue" },
-      { "data": "dead_head" },
-      { "data": "transit" },
-      { "data": "gc_unloaded" },
-      { "data": "gc_loaded" },
-      { "data": "am_unloaded" },
-      { "data": "am_loaded" },
-      {
-        data: null,
-        defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-flight' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-flight'><span class='icon-trash' aria-hidden='true'></span></button>"
-      }
-    ]
-  });
+      columns: [
+        { "data": "id" },
+        { "data": "date_created" },
+        { "data": "take_off" },
+        { "data": "landing" },
+        { "data": "parking" },
+        { "data": "nature" },
+        { "data": "flight_no" },
+        { "data": "origin" },
+        { "data": "destination" },
+        { "data": "type" },
+        { "data": "reg_no" },
+        { "data": "owner" },
+        { "data": "arrival" },
+        { "data": "non_revenue" },
+        { "data": "dead_head" },
+        { "data": "transit" },
+        { "data": "gc_unloaded" },
+        { "data": "gc_loaded" },
+        { "data": "am_unloaded" },
+        { "data": "am_loaded" },
+        {
+          data: null,
+          defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-flight' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-flight'><span class='icon-trash' aria-hidden='true'></span></button>"
+        }
+      ]
+    });
+  } else {
+    dataTableFlight = $('#dataTableFlight').DataTable({
+      "columnDefs": [
+        {
+          "targets": 0,
+          "visible": false,
+          "searchable": false
+        }
+      ],
+      "ajax": {
+        url: '../api/flight/read.php',
+        dataSrc: ""
+      },
+      columns: [
+        { "data": "id" },
+        { "data": "date_created" },
+        { "data": "take_off" },
+        { "data": "landing" },
+        { "data": "parking" },
+        { "data": "nature" },
+        { "data": "flight_no" },
+        { "data": "origin" },
+        { "data": "destination" },
+        { "data": "type" },
+        { "data": "reg_no" },
+        { "data": "owner" },
+        { "data": "arrival" },
+        { "data": "non_revenue" },
+        { "data": "dead_head" },
+        { "data": "transit" },
+        { "data": "gc_unloaded" },
+        { "data": "gc_loaded" },
+        { "data": "am_unloaded" },
+        { "data": "am_loaded" }
+      ]
+    });
+  }
 
   $("#dataTableFlight").on("click", ".btn-update-flight", function(e) {
     flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
@@ -497,5 +537,38 @@ function buttonListener() {
       },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
       });
+  })
+}
+
+function loginUser() {
+  $('.btn-login').click(function(e) {
+    var email = $('#exampleInputEmailLogin').val();
+    var password = $('#exampleInputPasswordLogin').val();
+    
+    if(email.trim().length < 1 || password.trim().length < 1){
+      alert('Please enter a valid format.');
+    } else{
+      $.ajax({
+          url: '../api/user/login.php',
+          type: 'POST',
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify({ email: email, password: password }),
+          error: function (request, status, error) {
+              alert("Password won't match to email.");
+          }
+      }).done(function(data){
+          var status = JSON.stringify(data.status)
+          var type = JSON.stringify(data.type)
+          
+          if(status == '"success"'){
+            location.href = "/CAAP%20Lingayen%20Airport/pages/flight_plans.php"
+          } else if(status == '"inactive"') {
+            alert("Your account is inactive. Contact system administrator for more information.");
+          } else {
+            alert("Password won't match to email.");
+          }
+      });
+    }
   })
 }

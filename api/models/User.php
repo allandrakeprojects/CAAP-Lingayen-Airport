@@ -10,6 +10,7 @@
     public $email;
     public $password;
     public $status;
+    public $type;
     
     public function __construct($db) {
       $this->conn = $db;
@@ -99,5 +100,34 @@
       if($stmt->execute()) {
         return true;
       }
+    }
+
+    // POST api/user/login
+    public function login() {
+      $query = 'SELECT * FROM ' . $this->table_user . ' WHERE email = ? LIMIT 0,1';
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(1, $this->email);
+      $password = $this->password;
+      $stmt->execute();
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $passwordHash = $row['password'];
+
+      if(password_verify($password, $passwordHash)){
+        if($row['status'] == 1){
+          session_start();
+          $_SESSION['id'] = $row['id'];
+          $_SESSION['full_name'] = $row['full_name'];
+          $_SESSION['email'] = $row['email'];
+          $_SESSION['type'] = $row['type'];
+          $this->type = $row['type'];
+          $this->status = 'success';
+        } else {
+          $this->status = 'inactive';
+        }
+      } else {
+        $this->status = 'failed';
+      }
+
+      return $stmt;
     }
   }

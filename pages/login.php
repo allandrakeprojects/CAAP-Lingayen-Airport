@@ -26,7 +26,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="../images/logo.svg">
+                  <img src="../images/logo-mini.png">
                 </div>
                 <h4>Hello!</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
@@ -38,9 +38,8 @@
                     <input type="password" class="form-control form-control-lg" id="exampleInputPasswordLogin" placeholder="Password">
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../index.php">SIGN IN</a>
+                    <button type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn btn-login" style="background-color: #2f3844; color: #38ce3c; border: 0">SIGN IN</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="register.php" class="text-primary">Create</a>
                   </div>
                 </form>
               </div>
@@ -58,8 +57,15 @@
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../js/off-canvas.js"></script>
-    <script src="../js/misc.js"></script>
+    <script src="../vendors/chart.js/Chart.min.js"></script>
+    <script src="../vendors/moment/moment.min.js"></script>
+    <script src="../vendors/daterangepicker/daterangepicker.js"></script>
+    <script src="../vendors/chartist/chartist.min.js"></script>
+    <script src="../vendors/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../js/custom.js"></script>
+    <!-- End custom js for this page -->
   </body>
 </html>
