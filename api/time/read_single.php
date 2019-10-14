@@ -1,5 +1,4 @@
-<?php 
-  // Headers
+<?php
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: POST');
@@ -12,20 +11,28 @@
   $db = $database->connect();
 
   $time = new Time($db);
-
   $data = json_decode(file_get_contents("php://input"));
   $time->aircraft = $data->aircraft;
-  $time->aircraft_regno = $data->aircraft_regno;
-  $time->take_off = $data->take_off;
-  $time->landing = $data->landing;
-  $time->status = $data->status;
-
-  if($time->update()) {
-    echo json_encode(
-      array('status' => 'ok')
-    );
+  $result = $time->read_single();
+  $num = $result->rowCount();
+  
+  if($num > 0) {
+    $time_arr = array();
+    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $time_item = array(
+        'id' => $id,
+        'aircraft' => $aircraft,
+        'aircraft_regno' => $aircraft_regno,
+        'take_off' => $take_off,
+        'landing' => $landing,
+        'status' => $status,
+      );
+      array_push($time_arr, $time_item);
+    }
+    echo json_encode($time_arr);
   } else {
     echo json_encode(
-      array('status' => 'failed')
+      array('message' => 'No Time Found')
     );
   }

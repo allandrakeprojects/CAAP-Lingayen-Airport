@@ -16,9 +16,6 @@
     readFlight();
     // Time API
     fillTimeManagement();
-    setInterval(function() {
-      fillTimeManagement();
-    }, 10000);
   });
 })(jQuery);
 
@@ -572,6 +569,64 @@ function buttonListener() {
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
       });
   })
+
+  // Time Management
+  $(document).on('click', ".btn-time-takeoff", function() {
+    var currentdate = new Date(); 
+    var datetime_now = currentdate.getFullYear() + "-"
+                  + (currentdate.getMonth()+1)  + "-" 
+                  + currentdate.getDate() + " "  
+                  + currentdate.getHours() + ":"  
+                  + currentdate.getMinutes() + ":" 
+                  + currentdate.getSeconds();
+    var aircraft = $(this).parent().find("#time_id").val()
+    var aircraft_regno = $(this).parent().find("#reg_no").val()
+    $.ajax({
+      url: '../api/time/update.php',
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({ aircraft: aircraft, aircraft_regno: aircraft_regno, take_off: datetime_now, landing: datetime_now, status: 1 }),
+      success: function (data) { location.href = "/CAAP%20Lingayen%20Airport/pages/time_management.php" },
+      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  });
+  
+  $(document).on('click', ".btn-time-landing", function() {
+    var take_off_datetime = $(this).closest(".time_data").find( '[id^="take_off_datetime"]' ).text();
+    var currentdate = new Date(); 
+    var datetime_now = currentdate.getFullYear() + "-"
+                  + (currentdate.getMonth()+1)  + "-" 
+                  + currentdate.getDate() + " "  
+                  + currentdate.getHours() + ":"  
+                  + currentdate.getMinutes() + ":" 
+                  + currentdate.getSeconds();
+    var aircraft = $(this).parent().find("#time_id").val()
+    var aircraft_regno = $(this).parent().find("#reg_no").val()
+    $.ajax({
+      url: '../api/time/update.php',
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({ aircraft: aircraft, aircraft_regno: aircraft_regno, take_off: take_off_datetime, landing: datetime_now, status: 2 }),
+      success: function (data) {
+        $.ajax({
+          url: '../api/flight/create.php',
+          type: 'POST',
+          contentType: "application/json",
+          dataType: "json",
+          data: JSON.stringify({ airline_name: aircraft, classification: '', take_off: take_off_datetime, landing: datetime_now, parking: '', nature: '',
+            flight_no: '', origin: '', destination: '', type: '', reg_no: aircraft_regno, owner: aircraft, arrival: '', non_revenue: '', dead_head: '', transit: '',
+            gc_unloaded: '', gc_loaded: '', am_unloaded: '', am_loaded: '', license_no: '' }),
+          success: function (data) {
+            location.href = "/CAAP%20Lingayen%20Airport/pages/time_management.php";
+          },
+          error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+        });
+      },
+      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  });
 }
 
 function loginUser() {
@@ -607,10 +662,45 @@ function loginUser() {
   })
 }
 
+var aircraft_get;
 function fillTimeManagement() {
+  $('#sort_aircraft_regno').empty()
+  var dropDown = document.getElementById("sort_aircraft_regno");
   $.ajax({
     type: "GET",
     url: '../api/time/read.php',
+    success: function(data) {
+      var s;
+      var strArray = []
+      for (var i = 0; i < data.length; i++) {
+        if(i == 0){
+          sortAircraftRegno(data[i].aircraft);
+          aircraft_get = data[i].aircraft;
+          
+          setInterval(function() {
+            sortAircraftRegno(aircraft_get);
+          }, 10000);
+        }
+        var value = '<option value="' + data[i].aircraft + '">' + data[i].aircraft + '</option>';
+        if (strArray.includes(value) === false) strArray.push(value);
+      }
+      $("#sort_aircraft_regno").html(strArray);
+    }
+  });
+
+  $("#sort_aircraft_regno").change(function () {
+    sortAircraftRegno($("#sort_aircraft_regno option:selected" ).text());
+    aircraft_get = $("#sort_aircraft_regno option:selected" ).text()
+  });  
+}
+
+function sortAircraftRegno(aircraft) {
+  $.ajax({
+    url: '../api/time/read_single.php',
+    type: 'POST',
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({ aircraft: aircraft }),
     success: function(data) {
       var s;
       var strArray = []
@@ -650,65 +740,10 @@ function fillTimeManagement() {
           button_disable_landing = 'disabled';
           time_difference = '-';
         }
-        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
-        if (strArray.includes(value) === false) strArray.push(value);
+        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft_regno + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
+        strArray.push(value);
       }
       $("#fill_time").html(strArray);
     }
-  });
-
-  $(document).on('click', ".btn-time-takeoff", function() {
-    var currentdate = new Date(); 
-    var datetime_now = currentdate.getFullYear() + "-"
-                  + (currentdate.getMonth()+1)  + "-" 
-                  + currentdate.getDate() + " "  
-                  + currentdate.getHours() + ":"  
-                  + currentdate.getMinutes() + ":" 
-                  + currentdate.getSeconds();
-    var aircraft = $(this).parent().find("input[type='hidden']").val()
-    $.ajax({
-      url: '../api/time/update.php',
-      type: 'POST',
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify({ aircraft: aircraft, take_off: datetime_now, landing: datetime_now, status: 1 }),
-      success: function (data) { location.href = "/CAAP%20Lingayen%20Airport/pages/time_management.php" },
-      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
-    });
-  });
-  
-  $(document).on('click', ".btn-time-landing", function() {
-    var take_off_datetime = $(this).closest(".time_data").find( '[id^="take_off_datetime"]' ).text();
-    var currentdate = new Date(); 
-    var datetime_now = currentdate.getFullYear() + "-"
-                  + (currentdate.getMonth()+1)  + "-" 
-                  + currentdate.getDate() + " "  
-                  + currentdate.getHours() + ":"  
-                  + currentdate.getMinutes() + ":" 
-                  + currentdate.getSeconds();
-    var aircraft = $(this).parent().find("input[type='hidden']").val()
-    $.ajax({
-      url: '../api/time/update.php',
-      type: 'POST',
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify({ aircraft: aircraft, take_off: take_off_datetime, landing: datetime_now, status: 2 }),
-      success: function (data) {
-        $.ajax({
-          url: '../api/flight/create.php',
-          type: 'POST',
-          contentType: "application/json",
-          dataType: "json",
-          data: JSON.stringify({ airline_name: aircraft, classification: '', take_off: take_off_datetime, landing: datetime_now, parking: '', nature: '',
-            flight_no: '', origin: '', destination: '', type: '', reg_no: '', owner: aircraft, arrival: '', non_revenue: '', dead_head: '', transit: '',
-            gc_unloaded: '', gc_loaded: '', am_unloaded: '', am_loaded: '', license_no: '' }),
-          success: function (data) {
-            location.href = "/CAAP%20Lingayen%20Airport/pages/time_management.php";
-          },
-          error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
-        });
-      },
-      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
-    });
   });
 }
