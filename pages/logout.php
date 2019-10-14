@@ -19,6 +19,6 @@
     // Finally, destroy the session.
     session_destroy();
 
-    header("Location: /CAAP%20Lingayen%20Airport/pages/login.php");
+    header("Location: /pages/login.php");
     die();
 ?>

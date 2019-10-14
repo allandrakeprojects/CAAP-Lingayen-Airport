@@ -2,7 +2,7 @@
   session_start();
 
   if(!isset($_SESSION['full_name'])){
-    header("Location: /CAAP%20Lingayen%20Airport/pages/login.php");
+    header("Location: /pages/login.php");
     die();
   }
 ?>
