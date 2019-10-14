@@ -9,13 +9,15 @@
 
     // POST api/time/create
     public function create() {
-      $query = 'INSERT INTO ' . $this->table_time . ' SET aircraft = :aircraft, status = :status';
+      $query = 'INSERT INTO ' . $this->table_time . ' SET aircraft = :aircraft, aircraft_regno = :aircraft_regno, status = :status';
       $stmt = $this->conn->prepare($query);
 
       $this->aircraft = htmlspecialchars(strip_tags($this->aircraft));
+      $this->aircraft_regno = htmlspecialchars(strip_tags($this->aircraft_regno));
       $this->status = htmlspecialchars(strip_tags($this->status));
 
       $stmt->bindParam(':aircraft', $this->aircraft);
+      $stmt->bindParam(':aircraft_regno', $this->aircraft_regno);
       $stmt->bindParam(':status', $this->status);
 
       if($stmt->execute()) {
@@ -25,7 +27,7 @@
 
     // GET api/time/read
     public function read() {
-      $query = 'SELECT * FROM ' . $this->table_time;
+      $query = 'SELECT * FROM ' . $this->table_time . ' ORDER BY aircraft';
       $stmt = $this->conn->prepare($query);
       $stmt->execute();
       return $stmt;

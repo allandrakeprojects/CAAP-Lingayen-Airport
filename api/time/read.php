@@ -18,6 +18,7 @@
       $flight_item = array(
         'id' => $id,
         'aircraft' => $aircraft,
+        'aircraft_regno' => $aircraft_regno,
         'take_off' => $take_off,
         'landing' => $landing,
         'status' => $status

@@ -15,6 +15,7 @@
 
   $data = json_decode(file_get_contents("php://input"));
   $time->aircraft = $data->aircraft;
+  $time->aircraft_regno = $data->aircraft_regno;
   $time->status = $data->status;
 
   if($time->create()) {

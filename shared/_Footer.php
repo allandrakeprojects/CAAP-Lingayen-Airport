@@ -15,7 +15,7 @@
     <script src="../vendors/moment/moment.min.js"></script>
     <script src="../vendors/daterangepicker/daterangepicker.js"></script>
     <script src="../vendors/chartist/chartist.min.js"></script>
-    <script src="../vendors/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/datatables.min.js"></script>
     <script src="../vendors/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->

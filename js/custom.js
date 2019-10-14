@@ -16,6 +16,9 @@
     readFlight();
     // Time API
     fillTimeManagement();
+    setInterval(function() {
+      fillTimeManagement();
+    }, 10000);
   });
 })(jQuery);
 
@@ -177,7 +180,7 @@ function createAircraft() {
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ aircraft: aircraft_name, status: 0 }),
+        data: JSON.stringify({ aircraft: aircraft_name, aircraft_regno: reg_no, status: 0 }),
         success: function (data) {
           return true;
         }
@@ -188,6 +191,15 @@ function createAircraft() {
 var aircraft_id_glob;
 function readAircraft() {
   var dataTableAircraft = $('#dataTableAircraft').DataTable({
+    dom: 'lBfrtip',
+    buttons: [
+        {
+          extend: 'excel',
+          exportOptions: {
+              columns: [ 1, 2, 3, 4 ]
+          }
+        }
+    ],
     "columnDefs": [
       {
         "targets": 3,
@@ -296,6 +308,15 @@ function readFlight() {
   var dataTableFlight;
   if($('#user_type').text().trim() == 'Administrator'){
     dataTableFlight = $('#dataTableFlight').DataTable({
+      dom: 'lBfrtip',
+      buttons: [
+          {
+            extend: 'excel',
+            exportOptions: {
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+            }
+          }
+      ],
       "columnDefs": [
         {
           "targets": 7,
@@ -603,7 +624,7 @@ function fillTimeManagement() {
           button_disable_landing = '';
           display = data[i].take_off;
 
-          var startDate = new Date(data[i].take_off);
+          var startDate = new Date(data[i].take_off.replace(/-/g, '/'));
           var endDate = new Date(Date.now());
           var timeDiff = Math.abs(startDate - endDate);
 
@@ -622,14 +643,14 @@ function fillTimeManagement() {
               ss = '0' + ss;
           }
 
-          time_difference = hh + ":" + mm;
+          time_difference = hh + ":" + mm + ":" + ss;
         } else {
           display = '-'
           button_disable_takeoff = '';
           button_disable_landing = 'disabled';
           time_difference = '-';
         }
-        var value = '<div class="col-md-3 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft + '</h4></div> <div class="card-body" style="height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
+        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
         if (strArray.includes(value) === false) strArray.push(value);
       }
       $("#fill_time").html(strArray);
