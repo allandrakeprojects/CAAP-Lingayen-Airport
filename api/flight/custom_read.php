@@ -21,8 +21,8 @@
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
       $flight_item = array(
-        'landing' => $landing,
-        'take_off' => $take_off,
+        'landing' => date("g:i a", strtotime($landing)),
+        'take_off' => date("g:i a", strtotime($take_off)),
         'total_hrs' => $total_hrs,
         'pilot' => $pilot,
         'date_created' => date("F j, Y", strtotime(str_replace(' 00:00:00', '', $date_created))),
