@@ -25,7 +25,7 @@
         'take_off' => $take_off,
         'total_hrs' => $total_hrs,
         'pilot' => $pilot,
-        'date_created' => $date_created,
+        'date_created' => date("F j, Y", strtotime(str_replace(' 00:00:00', '', $date_created))),
       );
       array_push($flight_arr, $flight_item);
     }
