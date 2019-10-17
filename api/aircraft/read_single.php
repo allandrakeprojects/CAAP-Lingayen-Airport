@@ -25,7 +25,8 @@
         'name' => $name,
         'code' => $code,
         'reg_no' => $reg_no,
-        'model' => $model
+        'model' => $model,
+        'pilot' => $pilot
       );
       array_push($aircraf_arr, $aircraf_item);
     }

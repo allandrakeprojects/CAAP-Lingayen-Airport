@@ -19,6 +19,7 @@
   $aircraft->code = $data->code;
   $aircraft->reg_no = $data->reg_no;
   $aircraft->model = $data->model;
+  $aircraft->pilot = $data->pilot;
 
   if($aircraft->update()) {
     echo json_encode(

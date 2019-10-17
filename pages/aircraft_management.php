@@ -27,6 +27,7 @@
                       <th>Name</th>
                       <th>Registration No.</th>
                       <th>Model</th>
+                      <th>Pilot</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -64,6 +65,10 @@
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="model" class="col-form-label" style="padding-bottom: 0">Model:</label>
                     <input type="text" class="form-control" id="model">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="pilot" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
+                    <input type="text" class="form-control" id="pilot">
                   </div>
                 </form>
               </div>
@@ -103,6 +108,10 @@
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="model-update" class="col-form-label" style="padding-bottom: 0">Model:</label>
                     <input type="text" class="form-control" id="model-update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="pilot_update" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
+                    <input type="text" class="form-control" id="pilot_update">
                   </div>
                 </form>
               </div>

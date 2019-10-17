@@ -157,13 +157,14 @@ function createAircraft() {
     var aircraft_name = $('#aircraft-name').val();
     var reg_no = $('#reg-no').val();
     var model = $('#model').val();
+    var pilot = $('#pilot').val();
         
     $.ajax({
         url: '../api/aircraft/create.php',
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ code: aircraft_code, name: aircraft_name, reg_no: reg_no, model: model }),
+        data: JSON.stringify({ code: aircraft_code, name: aircraft_name, reg_no: reg_no, model: model, pilot: pilot }),
         success: function (data) {
           $('#exampleModalAddAircraft').modal('toggle');
           $('#exampleModalAddAircraft').find('form').trigger('reset');
@@ -218,6 +219,7 @@ function readAircraft() {
       { "data": "name" },
       { "data": "reg_no" },
       { "data": "model" },
+      { "data": "pilot" },
       {
         data: null,
         defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-aircraft' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-aircraft'><span class='icon-trash' aria-hidden='true'></span></button>"
@@ -238,6 +240,7 @@ function readAircraft() {
         $('#aircraft-code-update').val(data[0].code);
         $('#reg-no-update').val(data[0].reg_no);
         $('#model-update').val(data[0].model);
+        $('#pilot_update').val(data[0].pilot);
         $('#exampleModalUpdateAircraft').modal('show');
       },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
@@ -490,13 +493,14 @@ function buttonListener() {
     var aircraft_name = $('#aircraft-name-update').val();
     var reg_no = $('#reg-no-update').val();
     var model = $('#model-update').val();
+    var pilot = $('#pilot_update').val();
         
     $.ajax({
         url: '../api/aircraft/update.php',
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ id: aircraft_id_glob, code: aircraft_code, name: aircraft_name, reg_no: reg_no, model: model }),
+        data: JSON.stringify({ id: aircraft_id_glob, code: aircraft_code, name: aircraft_name, reg_no: reg_no, model: model, pilot: pilot }),
         success: function (data) {
           $('#exampleModalUpdateAircraft').modal('toggle');
           $('#exampleModalUpdateAircraft').find('form').trigger('reset');

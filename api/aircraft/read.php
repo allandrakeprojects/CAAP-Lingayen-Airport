@@ -20,7 +20,8 @@
         'name' => $name,
         'code' => $code,
         'reg_no' => $reg_no,
-        'model' => $model
+        'model' => $model,
+        'pilot' => $pilot
       );
       array_push($aircraft_arr, $user_item);
     }
