@@ -308,7 +308,7 @@ function createFlight() {
 var flight_id_glob;
 function readFlight() {
   var dataTableFlight;
-  if($('#user_type').text().trim() == 'Administrator'){
+  if($('#user_type').text().trim() == 'Administrator') {
     dataTableFlight = $('#dataTableFlight').DataTable({
       dom: 'lBfrtip',
       buttons: [
@@ -372,85 +372,76 @@ function readFlight() {
         }
       ]
     });
-  } else {
-    dataTableFlight = $('#dataTableFlight').DataTable({
-      "columnDefs": [
-        {
-          "targets": 0,
-          "visible": false,
-          "searchable": false
-        }
-      ],
-      "ajax": {
-        url: '../api/flight/read.php',
-        dataSrc: ""
-      },
-      columns: [
-        { "data": "id" },
-        { "data": "date_created" },
-        { "data": "take_off" },
-        { "data": "landing" },
-        { "data": "parking" },
-        { "data": "nature" },
-        { "data": "flight_no" },
-        { "data": "origin" },
-        { "data": "destination" },
-        { "data": "type" },
-        { "data": "reg_no" },
-        { "data": "owner" },
-        { "data": "arrival" },
-        { "data": "non_revenue" },
-        { "data": "dead_head" },
-        { "data": "transit" },
-        { "data": "gc_unloaded" },
-        { "data": "gc_loaded" },
-        { "data": "am_unloaded" },
-        { "data": "am_loaded" }
-      ]
-    });
-  }
 
-  $("#dataTableFlight").on("click", ".btn-update-flight", function(e) {
-    flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
+    $("#dataTableFlight").on("click", ".btn-update-flight", function(e) {
+      flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
+      $.ajax({
+        url: '../api/flight/read_single.php',
+        type: 'POST',
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ id: flight_id_glob }),
+        success: function (data) {
+          $('#airline_name_update').val(data[0].airline_name);
+          $('#classification_update').val(data[0].classification);
+          $('#take_off_landing_update').val(data[0].take_off.replace(/-/g, '/') + ' - ' + data[0].landing.replace(/-/g, '/'));
+          $('#total_hrs__update').val(data[0].total_hrs);
+          $('#pilot__update').val(data[0].pilot);
+          $('#parking_update').val(data[0].parking);
+          $('#nature_update').val(data[0].nature);
+          $('#flight_no_update').val(data[0].flight_no);
+          $('#origin_update').val(data[0].origin);
+          $('#destination_update').val(data[0].destination);
+          $('#type_update').val(data[0].type);
+          $('#reg_no_update').val(data[0].reg_no);
+          $('#owner_update').val(data[0].owner);
+          $('#arrival_update').val(data[0].arrival);
+          $('#non_revenue_update').val(data[0].non_revenue);
+          $('#dead_head_update').val(data[0].dead_head);
+          $('#transit_update').val(data[0].transit);
+          $('#gc_unloaded_update').val(data[0].gc_unloaded);
+          $('#gc_loaded_update').val(data[0].gc_loaded);
+          $('#am_unloaded_update').val(data[0].am_unloaded);
+          $('#am_loaded_update').val(data[0].am_loaded);
+          $('#license_no_update').val(data[0].license_no);
+          $('#exampleModalUpdateFlight').modal('show');
+        },
+        error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+      });
+    });
+
+    $("#dataTableFlight").on("click", ".btn-delete-flight", function(e) {
+      flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
+      $('#exampleModalDeleteFlight').modal('show');
+    });
+  } else if($('#user_type').text().trim() == 'Pilot') {
+    var pilot = $('.profile-name').text().trim();
     $.ajax({
-      url: '../api/flight/read_single.php',
+      url: '../api/flight/custom_read.php',
       type: 'POST',
       contentType: "application/json",
       dataType: "json",
-      data: JSON.stringify({ id: flight_id_glob }),
-      success: function (data) {
-        $('#airline_name_update').val(data[0].airline_name);
-        $('#classification_update').val(data[0].classification);
-        $('#take_off_landing_update').val(data[0].take_off.replace(/-/g, '/') + ' - ' + data[0].landing.replace(/-/g, '/'));
-        $('#total_hrs__update').val(data[0].total_hrs);
-        $('#pilot__update').val(data[0].pilot);
-        $('#parking_update').val(data[0].parking);
-        $('#nature_update').val(data[0].nature);
-        $('#flight_no_update').val(data[0].flight_no);
-        $('#origin_update').val(data[0].origin);
-        $('#destination_update').val(data[0].destination);
-        $('#type_update').val(data[0].type);
-        $('#reg_no_update').val(data[0].reg_no);
-        $('#owner_update').val(data[0].owner);
-        $('#arrival_update').val(data[0].arrival);
-        $('#non_revenue_update').val(data[0].non_revenue);
-        $('#dead_head_update').val(data[0].dead_head);
-        $('#transit_update').val(data[0].transit);
-        $('#gc_unloaded_update').val(data[0].gc_unloaded);
-        $('#gc_loaded_update').val(data[0].gc_loaded);
-        $('#am_unloaded_update').val(data[0].am_unloaded);
-        $('#am_loaded_update').val(data[0].am_loaded);
-        $('#license_no_update').val(data[0].license_no);
-        $('#exampleModalUpdateFlight').modal('show');
+      data: JSON.stringify({ pilot: pilot }),
+      success: function (data) { 
+        var dataTableFlightPilot = $('#dataTableFlight').DataTable({
+          columns: [
+            { "data": "date_created" },
+            { "data": "take_off" },
+            { "data": "landing" },
+            { "data": "total_hrs" },
+          ]
+        });
+        dataTableFlightPilot.clear().draw();
+        if(data.message == 'No Transaction Found'){
+          dataTableFlightPilot.clear().draw();
+        } else {
+          dataTableFlightPilot.rows.add(data).draw();
+          dataSet = data;
+        }
       },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
-  });
-
-  $("#dataTableFlight").on("click", ".btn-delete-flight", function(e) {
-    flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
-    $('#exampleModalDeleteFlight').modal('show');
-  });
+  }
 }
 
 function buttonListener() {

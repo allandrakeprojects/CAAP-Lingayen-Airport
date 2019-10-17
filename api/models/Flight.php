@@ -114,6 +114,20 @@
       }
     }
 
+    // api/flight/custom_read
+    public function custom_read() {
+      $query = 'SELECT * FROM ' . $this->table_flight . ' WHERE pilot = :pilot';
+      $stmt = $this->conn->prepare($query);
+
+      $this->pilot = htmlspecialchars(strip_tags($this->pilot));
+
+      $stmt->bindParam(':pilot', $this->pilot);
+
+      if($stmt->execute()) {
+        return $stmt;
+      }
+    }
+
     // PUT api/flight/update
     public function update() {
       $query = 'UPDATE ' . $this->table_flight . ' SET airline_name = :airline_name, classification = :classification, landing = :landing, take_off = :take_off, total_hrs = :total_hrs, pilot = :pilot, parking = :parking,

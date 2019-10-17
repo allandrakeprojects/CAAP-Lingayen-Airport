@@ -28,6 +28,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTableFlight" width="100%" cellspacing="0" style="text-align: center">
                   <thead>
+                  <?php if($_SESSION['type'] == 0) { ?>
                     <tr>
                         <th style="vertical-align: middle" rowspan="3">ID</th>
                         <th style="vertical-align: middle" rowspan="3">Date</th>
@@ -39,11 +40,7 @@
                         <th style="vertical-align: middle" rowspan="3">Printed Name</th>
                         <th style="vertical-align: middle" rowspan="3">License No.</th>
                         <th style="vertical-align: middle" rowspan="3">Signature</th>
-                        <?php 
-                          if($_SESSION['type'] == 0) {
-                            echo "<th style='vertical-align: middle' rowspan='3'>Action</th>";
-                          }
-                        ?>
+                        <th style="vertical-align: middle" rowspan='3'>Action</th>
                     </tr>
                     <tr>
                         <th style="vertical-align: middle" rowspan="2">Take-Off</th>
@@ -72,6 +69,17 @@
                         <th>Unloaded</th>
                         <th style="border-right-width: 1px;">Loaded</th>
                     </tr>
+                    <?php } else { ?>
+                    <tr>
+                        <th style="vertical-align: middle" rowspan="2">Date</th>
+                        <th colspan="3">Time of Operation</th>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: middle" rowspan="1">Take-Off</th>
+                        <th style="vertical-align: middle" rowspan="1">Landing</th>
+                        <th style="vertical-align: middle" rowspan="1">Total Hours</th>
+                    </tr>
+                    <?php } ?>
                   </thead>
                   <!-- <tfoot>
                     <tr>
