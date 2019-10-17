@@ -36,6 +36,9 @@
                         <th colspan="3">Aircraft Particulars</th>
                         <th colspan="4">Passenger Traffic</th>
                         <th colspan="4">Freight Traffic</th>
+                        <th style="vertical-align: middle" rowspan="3">Printed Name</th>
+                        <th style="vertical-align: middle" rowspan="3">License No.</th>
+                        <th style="vertical-align: middle" rowspan="3">Signature</th>
                         <?php 
                           if($_SESSION['type'] == 0) {
                             echo "<th style='vertical-align: middle' rowspan='3'>Action</th>";

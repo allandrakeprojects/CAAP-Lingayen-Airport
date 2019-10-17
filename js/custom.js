@@ -310,7 +310,7 @@ function readFlight() {
           {
             extend: 'excel',
             exportOptions: {
-                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ]
             }
           }
       ],
@@ -320,7 +320,7 @@ function readFlight() {
           "sortable": false
         },
         {
-          "targets": 0,
+          "targets": [0, 20, 22],
           "visible": false,
           "searchable": false
         }
@@ -350,6 +350,15 @@ function readFlight() {
         { "data": "gc_loaded" },
         { "data": "am_unloaded" },
         { "data": "am_loaded" },
+        {
+          data: null,
+          defaultContent: ""
+        },
+        { "data": "license_no" },
+        {
+          data: null,
+          defaultContent: ""
+        },
         {
           data: null,
           defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-flight' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-flight'><span class='icon-trash' aria-hidden='true'></span></button>"
@@ -587,7 +596,7 @@ function buttonListener() {
       contentType: "application/json",
       dataType: "json",
       data: JSON.stringify({ aircraft: aircraft, aircraft_regno: aircraft_regno, take_off: datetime_now, landing: datetime_now, status: 1 }),
-      success: function (data) { location.href = "/pages/time_management.php" },
+      success: function (data) { location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php" },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
   });
@@ -619,7 +628,7 @@ function buttonListener() {
             flight_no: '', origin: '', destination: '', type: '', reg_no: aircraft_regno, owner: aircraft, arrival: '', non_revenue: '', dead_head: '', transit: '',
             gc_unloaded: '', gc_loaded: '', am_unloaded: '', am_loaded: '', license_no: '' }),
           success: function (data) {
-            location.href = "/pages/time_management.php";
+            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php";
           },
           error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
         });
@@ -651,7 +660,7 @@ function loginUser() {
           var type = JSON.stringify(data.type)
           
           if(status == '"success"'){
-            location.href = "/pages/flight_plans.php"
+            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/flight_plans.php"
           } else if(status == '"inactive"') {
             alert("Your account is inactive. Contact system administrator for more information.");
           } else {
