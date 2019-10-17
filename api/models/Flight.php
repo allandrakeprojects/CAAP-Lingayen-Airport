@@ -32,7 +32,7 @@
 
     // POST api/flight/create
     public function create() {
-      $query = 'INSERT INTO ' . $this->table_flight . ' SET airline_name = :airline_name, classification = :classification, landing = :landing, take_off = :take_off, parking = :parking,
+      $query = 'INSERT INTO ' . $this->table_flight . ' SET airline_name = :airline_name, classification = :classification, landing = :landing, take_off = :take_off, total_hrs = :total_hrs, pilot = :pilot, parking = :parking,
       nature = :nature, flight_no = :flight_no, origin = :origin, destination = :destination, type = :type, reg_no = :reg_no, owner = :owner, arrival = :arrival, non_revenue = :non_revenue, dead_head = :dead_head, transit = :transit,
       gc_unloaded = :gc_unloaded, gc_loaded = :gc_loaded, am_unloaded = :am_unloaded, am_loaded = :am_loaded, license_no = :license_no, date_created = :date_created';
       $stmt = $this->conn->prepare($query);
@@ -41,6 +41,8 @@
       $this->classification = htmlspecialchars(strip_tags($this->classification));
       $this->landing = htmlspecialchars(strip_tags($this->landing));
       $this->take_off = htmlspecialchars(strip_tags($this->take_off));
+      $this->total_hrs = htmlspecialchars(strip_tags($this->total_hrs));
+      $this->pilot = htmlspecialchars(strip_tags($this->pilot));
       $this->parking = htmlspecialchars(strip_tags($this->parking));
       $this->nature = htmlspecialchars(strip_tags($this->nature));
       $this->flight_no = htmlspecialchars(strip_tags($this->flight_no));
@@ -64,6 +66,8 @@
       $stmt->bindParam(':classification', $this->classification);
       $stmt->bindParam(':landing', $this->landing);
       $stmt->bindParam(':take_off', $this->take_off);
+      $stmt->bindParam(':total_hrs', $this->total_hrs);
+      $stmt->bindParam(':pilot', $this->pilot);
       $stmt->bindParam(':parking', $this->parking);
       $stmt->bindParam(':nature', $this->nature);
       $stmt->bindParam(':flight_no', $this->flight_no);
@@ -112,7 +116,7 @@
 
     // PUT api/flight/update
     public function update() {
-      $query = 'UPDATE ' . $this->table_flight . ' SET airline_name = :airline_name, classification = :classification, landing = :landing, take_off = :take_off, parking = :parking,
+      $query = 'UPDATE ' . $this->table_flight . ' SET airline_name = :airline_name, classification = :classification, landing = :landing, take_off = :take_off, total_hrs = :total_hrs, pilot = :pilot, parking = :parking,
       nature = :nature, flight_no = :flight_no, origin = :origin, destination = :destination, type = :type, reg_no = :reg_no, owner = :owner, arrival = :arrival, non_revenue = :non_revenue, dead_head = :dead_head, transit = :transit,
       gc_unloaded = :gc_unloaded, gc_loaded = :gc_loaded, am_unloaded = :am_unloaded, am_loaded = :am_loaded, license_no = :license_no WHERE id = :id';
       $stmt = $this->conn->prepare($query);
@@ -122,6 +126,8 @@
       $this->classification = htmlspecialchars(strip_tags($this->classification));
       $this->landing = htmlspecialchars(strip_tags($this->landing));
       $this->take_off = htmlspecialchars(strip_tags($this->take_off));
+      $this->total_hrs = htmlspecialchars(strip_tags($this->total_hrs));
+      $this->pilot = htmlspecialchars(strip_tags($this->pilot));
       $this->parking = htmlspecialchars(strip_tags($this->parking));
       $this->nature = htmlspecialchars(strip_tags($this->nature));
       $this->flight_no = htmlspecialchars(strip_tags($this->flight_no));
@@ -145,6 +151,8 @@
       $stmt->bindParam(':classification', $this->classification);
       $stmt->bindParam(':landing', $this->landing);
       $stmt->bindParam(':take_off', $this->take_off);
+      $stmt->bindParam(':total_hrs', $this->total_hrs);
+      $stmt->bindParam(':pilot', $this->pilot);
       $stmt->bindParam(':parking', $this->parking);
       $stmt->bindParam(':nature', $this->nature);
       $stmt->bindParam(':flight_no', $this->flight_no);

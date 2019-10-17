@@ -31,7 +31,7 @@
                     <tr>
                         <th style="vertical-align: middle" rowspan="3">ID</th>
                         <th style="vertical-align: middle" rowspan="3">Date</th>
-                        <th colspan="3">Time of Operation</th>
+                        <th colspan="5">Time of Operation</th>
                         <th colspan="4">Flight Particulars</th>
                         <th colspan="3">Aircraft Particulars</th>
                         <th colspan="4">Passenger Traffic</th>
@@ -48,6 +48,8 @@
                     <tr>
                         <th style="vertical-align: middle" rowspan="2">Take-Off</th>
                         <th style="vertical-align: middle" rowspan="2">Landing</th>
+                        <th style="vertical-align: middle" rowspan="2">Total Hours</th>
+                        <th style="vertical-align: middle" rowspan="2">Pilot</th>
                         <th style="vertical-align: middle" rowspan="2">Parking</th>
                         <th style="vertical-align: middle" rowspan="2">Nature</th>
                         <th style="vertical-align: middle" rowspan="2">Flight No.</th>
@@ -153,6 +155,14 @@
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
                     </div>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="total_hrs__add" class="col-form-label" style="padding-bottom: 0">Total Hours:</label>
+                    <input type="text" class="form-control" id="total_hrs__add">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="pilot__add" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
+                    <input type="text" class="form-control" id="pilot__add">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="parking" class="col-form-label" style="padding-bottom: 0">Parking:</label>
@@ -270,6 +280,14 @@
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
                     </div>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="total_hrs__update" class="col-form-label" style="padding-bottom: 0">Total Hours:</label>
+                    <input type="text" class="form-control" id="total_hrs__update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="pilot__update" class="col-form-label" style="padding-bottom: 0">Pilot:</label>
+                    <input type="text" class="form-control" id="pilot__update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="parking_update" class="col-form-label" style="padding-bottom: 0">Parking:</label>

@@ -35,7 +35,7 @@
 
     // GET api/time/read_single
     public function read_single() {
-      $query = 'SELECT * FROM ' . $this->table_time . ' WHERE aircraft = :aircraft';
+      $query = 'SELECT aircraft.pilot, time.aircraft, time.aircraft_regno, time.take_off, time.landing, time.landing, time.status FROM aircraft left join time on aircraft.reg_no = time.aircraft_regno where time.aircraft = :aircraft';
       $stmt = $this->conn->prepare($query);
 
       $this->aircraft = htmlspecialchars(strip_tags($this->aircraft));

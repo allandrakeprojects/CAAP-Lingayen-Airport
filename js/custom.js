@@ -267,6 +267,8 @@ function createFlight() {
     var fields = take_off_landing.split(' - ');
     var take_off = fields[0].replace(/\//g, '-');
     var landing = fields[1].replace(/\//g, '-');
+    var total_hrs = $('#total_hrs__add').val();
+    var pilot = $('#pilot__add').val();
     var parking = $('#parking').val();
     var nature = $('#nature').val();
     var flight_no = $('#flight_no').val();
@@ -290,7 +292,7 @@ function createFlight() {
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ airline_name: airline_name, classification: classification, take_off: take_off, landing: landing, parking: parking, nature: nature,
+        data: JSON.stringify({ airline_name: airline_name, classification: classification, take_off: take_off, landing: landing, total_hrs: total_hrs, pilot: pilot, parking: parking, nature: nature,
           flight_no: flight_no, origin: origin, destination: destination, type: type, reg_no: reg_no, owner: owner, arrival: arrival, non_revenue: non_revenue, dead_head: dead_head, transit: transit,
           gc_unloaded: gc_unloaded, gc_loaded: gc_loaded, am_unloaded: am_unloaded, am_loaded: am_loaded, license_no: license_no }),
         success: function (data) {
@@ -313,7 +315,7 @@ function readFlight() {
           {
             extend: 'excel',
             exportOptions: {
-                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ]
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
             }
           }
       ],
@@ -323,7 +325,7 @@ function readFlight() {
           "sortable": false
         },
         {
-          "targets": [0, 20, 22],
+          "targets": [0, 22, 24],
           "visible": false,
           "searchable": false
         }
@@ -337,6 +339,8 @@ function readFlight() {
         { "data": "date_created" },
         { "data": "take_off" },
         { "data": "landing" },
+        { "data": "total_hrs" },
+        { "data": "pilot" },
         { "data": "parking" },
         { "data": "nature" },
         { "data": "flight_no" },
@@ -418,6 +422,8 @@ function readFlight() {
         $('#airline_name_update').val(data[0].airline_name);
         $('#classification_update').val(data[0].classification);
         $('#take_off_landing_update').val(data[0].take_off.replace(/-/g, '/') + ' - ' + data[0].landing.replace(/-/g, '/'));
+        $('#total_hrs__update').val(data[0].total_hrs);
+        $('#pilot__update').val(data[0].pilot);
         $('#parking_update').val(data[0].parking);
         $('#nature_update').val(data[0].nature);
         $('#flight_no_update').val(data[0].flight_no);
@@ -533,6 +539,8 @@ function buttonListener() {
     var fields = take_off_landing.split(' - ');
     var take_off = fields[0].replace(/\//g, '-');
     var landing = fields[1].replace(/\//g, '-');
+    var total_hrs = $('#total_hrs__update').val();
+    var pilot = $('#pilot__update').val();
     var parking = $('#parking_update').val();
     var nature = $('#nature_update').val();
     var flight_no = $('#flight_no_update').val();
@@ -556,7 +564,7 @@ function buttonListener() {
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ id: flight_id_glob, airline_name: airline_name, classification: classification, take_off: take_off, landing: landing, parking: parking, nature: nature,
+        data: JSON.stringify({ id: flight_id_glob, airline_name: airline_name, classification: classification, take_off: take_off, landing: landing, total_hrs: total_hrs, pilot: pilot, parking: parking, nature: nature,
           flight_no: flight_no, origin: origin, destination: destination, type: type, reg_no: reg_no, owner: owner, arrival: arrival, non_revenue: non_revenue, dead_head: dead_head, transit: transit,
           gc_unloaded: gc_unloaded, gc_loaded: gc_loaded, am_unloaded: am_unloaded, am_loaded: am_loaded, license_no: license_no }),
         success: function (data) {
@@ -719,6 +727,7 @@ function sortAircraftRegno(aircraft) {
       var strArray = []
       var time_difference;
       for (var i = 0; i < data.length; i++) {
+        //data[i].pilot
         var button_disable_takeoff;
         var button_disable_landing;
         var display;
@@ -748,12 +757,12 @@ function sortAircraftRegno(aircraft) {
 
           time_difference = hh + ":" + mm + ":" + ss;
         } else {
-          display = '-'
+          display = '-';
           button_disable_takeoff = '';
           button_disable_landing = 'disabled';
           time_difference = '-';
         }
-        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft_regno + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
+        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft_regno + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
         strArray.push(value);
       }
       $("#fill_time").html(strArray);

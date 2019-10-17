@@ -19,6 +19,8 @@
   $flight->classification = $data->classification;
   $flight->landing = $data->landing;
   $flight->take_off = $data->take_off;
+  $flight->total_hrs = $data->total_hrs;
+  $flight->pilot = $data->pilot;
   $flight->parking = $data->parking;
   $flight->nature = $data->nature;
   $flight->flight_no = $data->flight_no;

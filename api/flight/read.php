@@ -21,6 +21,8 @@
         'classification' => $classification,
         'landing' => date("g:i a", strtotime($landing)),
         'take_off' => date("g:i a", strtotime($take_off)),
+        'total_hrs' => $total_hrs,
+        'pilot' => $pilot,
         'parking' => $parking,
         'nature' => $nature,
         'flight_no' => $flight_no,

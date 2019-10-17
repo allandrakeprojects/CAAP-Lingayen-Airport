@@ -26,6 +26,8 @@
         'classification' => $classification,
         'landing' => $landing,
         'take_off' => $take_off,
+        'total_hrs' => $total_hrs,
+        'pilot' => $pilot,
         'parking' => $parking,
         'nature' => $nature,
         'flight_no' => $flight_no,

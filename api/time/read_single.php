@@ -21,12 +21,12 @@
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
       $time_item = array(
-        'id' => $id,
         'aircraft' => $aircraft,
         'aircraft_regno' => $aircraft_regno,
         'take_off' => $take_off,
         'landing' => $landing,
         'status' => $status,
+        'pilot' => $pilot,
       );
       array_push($time_arr, $time_item);
     }
