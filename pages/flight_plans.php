@@ -7,11 +7,11 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between" style="align-items: center">
               <h4 class="m-0 font-weight-bold" style="color: #38ce3c">Flights</h4>
-              <?php 
+              <!-- <?php 
                 if($_SESSION['type'] == 0) {
                   echo "<span class='float-sm-right'><button type='button' class='btn btn-rounded btn-dark btn-fw' style='color: #38ce3c' data-toggle='modal' data-target='#exampleModalAddFlight'>Add Flight</button></span>";
                 }
-              ?>
+              ?> -->
             </div>
             <div class="card-body">
               <!-- <div class="mb-4">
@@ -53,7 +53,7 @@
                         <th style="vertical-align: middle" rowspan="2">Origin</th>
                         <th style="vertical-align: middle" rowspan="2">Destination</th>
                         <th style="vertical-align: middle" rowspan="2">Type</th>
-                        <th style="vertical-align: middle" rowspan="2">Reg. No</th>
+                        <th style="vertical-align: middle" rowspan="2">Reg. No.</th>
                         <th style="vertical-align: middle" rowspan="2">Owner</th>
                         <th style="vertical-align: middle" rowspan="2">Arrival</th>
                         <th style="vertical-align: middle" colspan="3">Depature</th>
@@ -162,6 +162,7 @@
                           <input type="text" class="form-control" style="width: 320px;" id="take_off_landing">
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
@@ -251,6 +252,7 @@
                 <button type="button" class="btn btn-dark btn-add-flight" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
+            </div>
             </div>
           </div>
         </div>

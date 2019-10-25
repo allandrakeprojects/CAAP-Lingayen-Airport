@@ -16,6 +16,16 @@
     readFlight();
     // Time API
     fillTimeManagement();
+    // Flight Time
+    flightTime();
+    // Schedule API
+    createSchedule();
+    readSchedule();
+    // Student Record API
+    readStudentRecord();
+    readStudentRecordRecord();
+    readScheduleSchedule();
+    changePassword();
   });
 })(jQuery);
 
@@ -25,10 +35,30 @@ function custom() {
   var end = moment();
 
   function cb(start, end) {
-      $('#income-expense-summary-chart-daterange input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('DD/MM/YYY HH:mm:ss'));
-      $('#income-expense-summary-chart-daterange-modal input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('YYYY/MM/DD HH:mm:ss'));
-      $('#income-expense-summary-chart-daterange-update-modal input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('YYYY/MM/DD HH:mm:ss'));
+    $('#daterange-schedule-modal input').val(start.format('hh:mm A') + ' - ' + end.format('hh:mm A'));
+    $('#daterange-schedule-update-modal input').val(start.format('hh:mm A') + ' - ' + end.format('hh:mm A'));
+    $('#income-expense-summary-chart-daterange input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('DD/MM/YYY HH:mm:ss'));
+    $('#income-expense-summary-chart-daterange-modal input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('YYYY/MM/DD HH:mm:ss'));
+    $('#income-expense-summary-chart-daterange-update-modal input').val(start.format('YYYY/MM/DD HH:mm:ss') + ' - ' + end.format('YYYY/MM/DD HH:mm:ss'));
   }
+
+  $('#daterange-schedule-modal').daterangepicker({
+    timePicker: true,
+    locale: {
+      format: 'hh:mm A'
+    },
+  }, cb).on('show.daterangepicker', function (ev, picker) {
+      picker.container.find(".calendar-table").hide();
+  });
+
+  $('#daterange-schedule-update-modal').daterangepicker({
+    timePicker: true,
+    locale: {
+      format: 'hh:mm A'
+    },
+  }, cb).on('show.daterangepicker', function (ev, picker) {
+      picker.container.find(".calendar-table").hide();
+  });
 
   $('#income-expense-summary-chart-daterange').daterangepicker({
     timePicker: true,
@@ -173,16 +203,16 @@ function createAircraft() {
         error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
     
-    $.ajax({
-        url: '../api/time/create.php',
-        type: 'POST',
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({ aircraft: aircraft_name, aircraft_regno: reg_no, status: 0 }),
-        success: function (data) {
-          return true;
-        }
-    });
+    // $.ajax({
+    //     url: '../api/time/create.php',
+    //     type: 'POST',
+    //     contentType: "application/json",
+    //     dataType: "json",
+    //     data: JSON.stringify({ aircraft: aircraft_name, aircraft_regno: reg_no, status: 0 }),
+    //     success: function (data) {
+    //       return true;
+    //     }
+    // });
   })
 }
 
@@ -304,6 +334,17 @@ function createFlight() {
     });
   })
 }
+
+// extend: 'pdf',
+// customize: function (doc) {
+//   doc.content[1].table.widths = 
+//       Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+// },
+// orientation: 'landscape',
+// pageSize: 'A0',
+// exportOptions: {
+//     columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
+// }
 
 var flight_id_glob;
 function readFlight() {
@@ -453,7 +494,7 @@ function buttonListener() {
     var email = $('#email-update').val();
     var password = $('#password-update').val();
     var status = $('#status-update').val();
-        
+    
     $.ajax({
         url: '../api/user/update.php',
         type: 'POST',
@@ -599,7 +640,7 @@ function buttonListener() {
       contentType: "application/json",
       dataType: "json",
       data: JSON.stringify({ aircraft: aircraft, aircraft_regno: aircraft_regno, take_off: datetime_now, landing: datetime_now, status: 1 }),
-      success: function (data) { location.href = "/pages/time_management.php" },
+      success: function (data) { location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php" },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
   });
@@ -634,7 +675,7 @@ function buttonListener() {
             flight_no: '', origin: '', destination: '', type: '', reg_no: aircraft_regno, owner: aircraft, arrival: '', non_revenue: '', dead_head: '', transit: '',
             gc_unloaded: '', gc_loaded: '', am_unloaded: '', am_loaded: '', license_no: '' }),
           success: function (data) {
-            location.href = "/pages/time_management.php";
+            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php";
           },
           error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
         });
@@ -642,6 +683,45 @@ function buttonListener() {
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
   });
+  
+  // Schedule Modal
+  $('.btn-update-schedule-modal').click(function(e) {
+    var aircraft_ident = $('#aircraft_ident_update').val();
+    var time = $('#time_update').val();
+    var name_student = $('#name_student_update').val();
+    var nationality = $('#nationality_update').val();
+    var flight_instructor = $('#flight_instructor_update').val();
+    var route = $('#route_update').val();
+        
+    $.ajax({
+        url: '../api/schedule/update.php',
+        type: 'POST',
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ id: schedule_id_glob, aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route }),
+        success: function (data) {
+          $('#exampleModalUpdateSchedule').modal('toggle');
+          $('#exampleModalUpdateSchedule').find('form').trigger('reset');
+          $('#dataTableSchedule').DataTable().ajax.reload(); 
+        },
+        error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  })
+
+  $('.btn-delete-schedule-modal').click(function(e) {
+    $.ajax({
+      url: '../api/schedule/delete.php',
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({ id: schedule_id_glob }),
+      success: function (data) {
+        $('#exampleModalDeleteSchedule').modal('hide');
+        $('#dataTableSchedule').DataTable().ajax.reload(); 
+      },
+      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  })
 }
 
 function loginUser() {
@@ -666,7 +746,7 @@ function loginUser() {
           var type = JSON.stringify(data.type)
           
           if(status == '"success"'){
-            location.href = "/pages/flight_plans.php"
+            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/flight_plans.php"
           } else if(status == '"inactive"') {
             alert("Your account is inactive. Contact system administrator for more information.");
           } else {
@@ -692,9 +772,9 @@ function fillTimeManagement() {
           sortAircraftRegno(data[i].aircraft);
           aircraft_get = data[i].aircraft;
           
-          setInterval(function() {
-            sortAircraftRegno(aircraft_get);
-          }, 10000);
+          // setInterval(function() {
+          //   sortAircraftRegno(aircraft_get);
+          // }, 10000);
         }
         var value = '<option value="' + data[i].aircraft + '">' + data[i].aircraft + '</option>';
         if (strArray.includes(value) === false) strArray.push(value);
@@ -756,10 +836,267 @@ function sortAircraftRegno(aircraft) {
           button_disable_landing = 'disabled';
           time_difference = '-';
         }
-        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft_regno + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"><input type="hidden" id="total_hrs" name="total_hrs" class="total_hrs" value="' + time_difference + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
+        var value = '<div class="col-md-6 time_data"><div class="card shadow mb-4"><div class="card-header py-3 d-flex justify-content-between" style="align-items: center"><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].aircraft_regno + '</h4><h4 class="m-0 font-weight" style="color: #38ce3c">' + data[i].pilot + '</h4></div> <div class="card-body" style="min-height: 151px;"> <div class="row" style="text-align: center"> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-takeoff"'+ button_disable_takeoff +'>TAKE-OFF<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"></button> <p id="take_off_datetime" style="margin-top: 15px; margin-bottom: 0">' + display  + '</p> </div> <div class="col-md-4"> <p style="margin: 25px 0; border: 1px dotted black;">' + time_difference + '</p> </div> <div class="col-md-4"> <button type="button" class="btn btn-primary btn-rounded btn-sm btn-time-landing"' + button_disable_landing + '>LANDING<input type="hidden" id="time_id" name="time_id" class="time_id" value="' + data[i].aircraft + '"><input type="hidden" id="reg_no" name="reg_no" class="reg_no" value="' + data[i].aircraft_regno + '"><input type="hidden" id="pilot" name="pilot" class="pilot" value="' + data[i].pilot + '"><input type="hidden" id="total_hrs" name="total_hrs" class="total_hrs" value="' + time_difference + '"></button> <p style="margin-top: 15px; margin-bottom: 0">-</p> </div> </div> </div> </div> </div>';
         strArray.push(value);
       }
+      var add = '<div class="col-md-6 addflighttime" style="cursor: pointer"><div class="card shadow mb-4"> <div class="card-body" style="min-height: 205px"> <div class="row" style="text-align: center; height: 145px"> <div class="col-md-12"> <i style="font-size: 60px;color: #1bdbe0;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);height: 50%;width: 50%;display: block;padding-top: 6px;" class="icon-plus"></i>'
+      strArray.push(add);
       $("#fill_time").html(strArray);
     }
   });
+}
+
+function flightTime() {
+  $(document).on('click', ".addflighttime", function() {
+    $('#exampleModalAddFlightTime').modal('toggle');
+  });
+
+
+  $('.btn-add-flight-time').click(function(e) {
+    var aircraft_flighttime = $('#aircraft_flighttime').val();
+    var regno_flighttime = $('#regno_flighttime').val();
+    var pilot_flighttime = $('#pilot_flighttime').val();
+
+    $.ajax({
+        url: '../api/time/create.php',
+        type: 'POST',
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ aircraft: aircraft_flighttime, aircraft_regno: regno_flighttime, pilot: pilot_flighttime, status: 0 }),
+        success: function (data) {
+          location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php";
+        }
+    });
+  });
+}
+
+function createSchedule() {
+  $('.btn-add-schedule').click(function(e) {
+    var aircraft_ident = $('#aircraft_ident').val();
+    var time = $('#time').val();
+    var name_student = $('#name_student').val();
+    var nationality = $('#nationality').val();
+    var flight_instructor = $('#flight_instructor').val();
+    var route = $('#route').val();
+        
+    $.ajax({
+        url: '../api/schedule/create.php',
+        type: 'POST',
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({ aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route }),
+        success: function (data) {
+          $('#exampleModalAddSchedule').modal('toggle');
+          $('#exampleModalAddSchedule').find('form').trigger('reset');
+          $('#dataTableSchedule').DataTable().ajax.reload(); 
+        },
+        error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  })
+}
+
+var schedule_id_glob;
+function readSchedule() {
+  var dataTableSchedule = $('#dataTableSchedule').DataTable({
+    dom: 'lBfrtip',
+    buttons: [
+        {
+          extend: 'excel',
+          exportOptions: {
+              columns: [ 1, 2, 3, 4, 5, 6, 7 ]
+          }
+        }
+    ],
+    "columnDefs": [
+      {
+        "targets": 8,
+        "sortable": false
+      },
+      {
+        "targets": [0],
+        "visible": false,
+        "searchable": false
+      }
+    ],
+    "ajax": {
+      url: '../api/schedule/read.php',
+      dataSrc: ""
+    },
+    columns: [
+      { "data": "id" },
+      { "data": "aircraft" },
+      { "data": "date_created" },
+      { "data": "time" },
+      { "data": "student" },
+      { "data": "nationality" },
+      { "data": "instructor" },
+      { "data": "route" },
+      {
+        data: null,
+        defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-schedule' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-schedule'><span class='icon-trash' aria-hidden='true'></span></button>"
+      }
+    ]
+  });
+
+  $("#dataTableSchedule").on("click", ".btn-update-schedule", function(e) {
+    schedule_id_glob = dataTableSchedule.row($(this).parents('tr')).data()["id"];
+    $.ajax({
+      url: '../api/schedule/read_single.php',
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({ id: schedule_id_glob }),
+      success: function (data) {
+        $('#aircraft_ident_update').val(data[0].aircraft);
+        $('#time_update').val(data[0].time);
+        $('#name_student_update').val(data[0].student);
+        $('#nationality_update').val(data[0].nationality);
+        $('#flight_instructor_update').val(data[0].instructor);
+        $('#route_update').val(data[0].route);
+
+        $('#exampleModalUpdateSchedule').modal('show');
+      },
+      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+    });
+  });
+
+  $("#dataTableSchedule").on("click", ".btn-delete-schedule", function(e) {
+    schedule_id_glob = dataTableSchedule.row($(this).parents('tr')).data()["id"];
+    var full_name = dataTableSchedule.row($(this).parents('tr')).data()["full_name"];
+    $('#exampleModalDeleteSchedule').find('.modal-body-delete').append('Are you sure you want to delete schedule?');
+    $('#exampleModalDeleteSchedule').modal('show');
+  });
+
+  $('#exampleModalDeleteSchedule').on('hidden.bs.modal', function () {
+    $('#exampleModalDeleteSchedule').find('.modal-body-delete').text('');
+  })
+}
+
+function readStudentRecord(){
+  var dataTableUser = $('#dataTableStudentRecords').DataTable({
+    "ajax": {
+      url: '../api/flight/total_flight_hr.php',
+      dataSrc: ""
+    },
+    columns: [
+      { "data": "pilot" },
+      { "data": "total_hrs" },
+      { "data": "left_hrs" },
+      { "data": "left_hrs",
+        "render": function(data, type, row){
+          var total_payment = row.payment * 7000;
+          return total_payment.toLocaleString();
+        }
+      },
+    ]
+  });
+}
+
+function readStudentRecordRecord(){
+  var pilot = $('.profile-name').text().trim();
+
+  $.ajax({
+    url: '../api/flight/read_single_total_flight_hr.php',
+    type: 'POST',
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({ pilot: pilot }),
+    success: function (data) { 
+      var dataTableStudentRecordsRecords = $('#dataTableStudentRecordsRecords').DataTable({
+        "columnDefs": [
+          {
+            "targets": [0, 1, 2],
+            "sortable": false
+          }
+        ],
+        "aaSorting": [],
+        columns: [
+          { "data": "total_hrs" },
+          { "data": "left_hrs" },
+          { "data": "left_hrs",
+            "render": function(data, type, row){
+              var total_payment = row.payment * 7000;
+              return total_payment.toLocaleString();
+            }
+          },
+        ],
+        "bDestroy": true
+      });
+      
+      dataTableStudentRecordsRecords.clear().draw();
+      if(data.message == 'No Record Found'){
+        dataTableStudentRecordsRecords.clear().draw();
+      } else {
+        dataTableStudentRecordsRecords.rows.add(data).draw();
+        dataSet = data;
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+  });
+}
+
+function readScheduleSchedule(){
+  var pilot = $('.profile-name').text().trim();
+
+  $.ajax({
+    url: '../api/schedule/read_single_pilot.php',
+    type: 'POST',
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({ pilot: pilot }),
+    success: function (data) { 
+      var dataTableScheduleSchedule = $('#dataTableScheduleSchedule').DataTable({
+        "columnDefs": [
+          {
+            "targets": [0, 1, 2],
+            "sortable": false
+          }
+        ],
+        "aaSorting": [],
+        columns: [
+          { "data": "aircraft" },
+          { "data": "date_created" },
+          { "data": "time" },
+          { "data": "nationality" },
+          { "data": "instructor" },
+          { "data": "route" },
+        ],
+        "bDestroy": true
+      });
+      
+      dataTableScheduleSchedule.clear().draw();
+      if(data.message == 'No Record Found'){
+        dataTableScheduleSchedule.clear().draw();
+      } else {
+        dataTableScheduleSchedule.rows.add(data).draw();
+        dataSet = data;
+      }
+    },
+    error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+  });
+}
+
+function changePassword(){
+  $('.change-password').click(function(e) {
+    $('#exampleModalChangePassword').modal('toggle');
+  })
+
+  $('.btn-change-password').click(function(e) {
+    var pilot_id = $('#pilot_id').val().trim();
+    var new_password = $('#new_password').val();
+    
+    $.ajax({
+      url: '../api/user/change_password.php',
+      type: 'POST',
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({ id: pilot_id, new_password: new_password }),
+      success: function (data) {
+        $('#exampleModalChangePassword').modal('toggle');
+        $('#exampleModalChangePassword').find('form').trigger('reset');
+        alert('Password changed successfuly.');
+      },
+      error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
+  });
+  })
 }

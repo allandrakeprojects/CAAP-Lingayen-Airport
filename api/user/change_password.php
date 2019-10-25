@@ -6,20 +6,19 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
   include_once '../config/Database.php';
-  include_once '../models/Time.php';
+  include_once '../models/User.php';
 
   $database = new Database();
   $db = $database->connect();
 
-  $time = new Time($db);
+  $user = new User($db);
 
   $data = json_decode(file_get_contents("php://input"));
-  $time->aircraft = $data->aircraft;
-  $time->aircraft_regno = $data->aircraft_regno;
-  $time->pilot = $data->pilot;
-  $time->status = $data->status;
+  $user->id = $data->id;
+  $hash = password_hash($data->new_password, PASSWORD_BCRYPT);
+  $user->new_password = $hash;  
 
-  if($time->create()) {
+  if($user->change_password()) {
     echo json_encode(
       array('status' => 'ok')
     );

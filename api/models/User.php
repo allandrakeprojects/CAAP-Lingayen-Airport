@@ -130,4 +130,20 @@
 
       return $stmt;
     }
+    
+    // PUT api/user/change_password
+    public function change_password() {
+      $query = 'UPDATE ' . $this->table_user . ' SET password = :password WHERE id = :id';
+      $stmt = $this->conn->prepare($query);
+
+      $this->id = htmlspecialchars(strip_tags($this->id));
+      $this->new_password = htmlspecialchars(strip_tags($this->new_password));
+      
+      $stmt->bindParam(':id', $this->id);
+      $stmt->bindParam(':password', $this->new_password);
+
+      if($stmt->execute()) {
+        return true;
+      }
+    }
   }

@@ -5,33 +5,35 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
   include_once '../config/Database.php';
-  include_once '../models/Flight.php';
+  include_once '../models/Schedule.php';
 
   $database = new Database();
   $db = $database->connect();
 
-  $flight = new Flight($db);
+  $schedule = new Schedule($db);
   $data = json_decode(file_get_contents("php://input"));
-  $flight->pilot = $data->pilot;
-  $result = $flight->custom_read();
+  $schedule->pilot = $data->pilot;
+  $result = $schedule->read_single_pilot();
   $num = $result->rowCount();
   
   if($num > 0) {
-    $flight_arr = array();
+    $schedule_arr = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
-      $flight_item = array(
-        'landing' => date("g:i:s a", strtotime($landing)),
-        'take_off' => date("g:i:s a", strtotime($take_off)),
-        'total_hrs' => $total_hrs,
-        'pilot' => $pilot,
-        'date_created' => date("F j, Y", strtotime(str_replace(' 00:00:00', '', $date_created))),
+      $schedule_item = array(
+        'aircraft' => $aircraft,
+        'date_created' => $date_created,
+        'time' => $time,
+        'student' => $student,
+        'nationality' => $nationality,
+        'instructor' => $instructor,
+        'route' => $route
       );
-      array_push($flight_arr, $flight_item);
+      array_push($schedule_arr, $schedule_item);
     }
-    echo json_encode($flight_arr);
+    echo json_encode($schedule_arr);
   } else {
     echo json_encode(
-      array('message' => 'No Flight Found')
+      array('message' => 'No Schedule Found')
     );
   }

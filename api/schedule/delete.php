@@ -6,20 +6,16 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
   include_once '../config/Database.php';
-  include_once '../models/Time.php';
+  include_once '../models/Schedule.php';
 
   $database = new Database();
   $db = $database->connect();
 
-  $time = new Time($db);
-
+  $schedule = new Schedule($db);
   $data = json_decode(file_get_contents("php://input"));
-  $time->aircraft = $data->aircraft;
-  $time->aircraft_regno = $data->aircraft_regno;
-  $time->pilot = $data->pilot;
-  $time->status = $data->status;
-
-  if($time->create()) {
+  $schedule->id = $data->id;
+  
+  if($schedule->delete()) {
     echo json_encode(
       array('status' => 'ok')
     );

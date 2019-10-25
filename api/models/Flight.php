@@ -203,4 +203,26 @@
         return true;
       }
     }
+
+    // GET api/flight/total_flight_hr
+    public function total_flight_hr() {
+      $query = 'SELECT pilot, SEC_TO_TIME(SUM( TIME_TO_SEC( `total_hrs` ))) AS total_hrs, TIMEDIFF("800:00:00", SEC_TO_TIME(SUM( TIME_TO_SEC( `total_hrs` )))) as left_hrs, SUM(total_hrs) as payment FROM `flight` WHERE pilot != "" and total_hrs != "" group by pilot';
+      $stmt = $this->conn->prepare($query);
+      $stmt->execute();
+      return $stmt;
+    }
+
+    // GET api/flight/read_single_total_flight_hr
+    public function read_single_total_flight_hr() {
+      $query = 'SELECT pilot, SEC_TO_TIME(SUM( TIME_TO_SEC( `total_hrs` ))) AS total_hrs, TIMEDIFF("800:00:00", SEC_TO_TIME(SUM( TIME_TO_SEC( `total_hrs` )))) as left_hrs, SUM(total_hrs) as payment FROM `flight` WHERE pilot = :pilot group by pilot';
+      $stmt = $this->conn->prepare($query);
+
+      $this->pilot = htmlspecialchars(strip_tags($this->pilot));
+
+      $stmt->bindParam(':pilot', $this->pilot);
+
+      if($stmt->execute()) {
+        return $stmt;
+      }
+    }
   }

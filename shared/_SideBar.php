@@ -45,11 +45,35 @@
                   <i class="icon-hourglass menu-icon"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="schedule.php">
+                  <span class="menu-title">Schedule</span>
+                  <i class="icon-book-open menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="student_records.php">
+                  <span class="menu-title">Student Records</span>
+                  <i class="icon-briefcase menu-icon"></i>
+                </a>
+              </li>
             <?php } else { ?>
               <li class="nav-item">
                 <a class="nav-link" href="flight_plans.php">
                   <span class="menu-title">Flight Plans</span>
                   <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="record.php">
+                  <span class="menu-title">Record</span>
+                  <i class="icon-briefcase menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="schedule_pilot.php">
+                  <span class="menu-title">Schedule</span>
+                  <i class="icon-book-open menu-icon"></i>
                 </a>
               </li>
             <?php } ?>

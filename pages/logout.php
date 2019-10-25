@@ -13,6 +13,6 @@
 
     session_destroy();
 
-    header("Location: /pages/login.php");
+    header("Location: http://localhost/CAAP%20Lingayen%20Airport/pages/login.php");
     die();
 ?>

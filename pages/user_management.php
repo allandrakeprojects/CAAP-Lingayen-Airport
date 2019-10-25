@@ -18,7 +18,7 @@
                       <th>Full name</th>
                       <th>Contact Number</th>
                       <th>Address</th>
-                      <th>Email</th>
+                      <th>ID</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -72,7 +72,7 @@
                     <input type="text" class="form-control" id="address">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="email" class="col-form-label" style="padding-bottom: 0">Email:</label>
+                    <label for="email" class="col-form-label" style="padding-bottom: 0">ID:</label>
                     <input type="text" class="form-control" id="email">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
@@ -122,7 +122,7 @@
                     <input type="text" class="form-control" id="address-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="email-update" class="col-form-label" style="padding-bottom: 0">Email:</label>
+                    <label for="email-update" class="col-form-label" style="padding-bottom: 0">ID:</label>
                     <input type="text" class="form-control" id="email-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
