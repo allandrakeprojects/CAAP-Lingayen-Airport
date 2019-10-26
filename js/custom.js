@@ -349,7 +349,7 @@ function createFlight() {
 var flight_id_glob;
 function readFlight() {
   var dataTableFlight;
-  if($('#user_type').text().trim() == 'Administrator') {
+  if($('#user_type').val().trim() == '0') {
     dataTableFlight = $('#dataTableFlight').DataTable({
       dom: 'lBfrtip',
       buttons: [
@@ -455,8 +455,8 @@ function readFlight() {
       flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
       $('#exampleModalDeleteFlight').modal('show');
     });
-  } else if($('#user_type').text().trim() == 'Pilot') {
-    var pilot = $('.profile-name').text().trim();
+  } else if($('#user_type').val().trim() == '1') {
+    var pilot = $('#username').val().trim();
     $.ajax({
       url: '../api/flight/custom_read.php',
       type: 'POST',
@@ -640,7 +640,7 @@ function buttonListener() {
       contentType: "application/json",
       dataType: "json",
       data: JSON.stringify({ aircraft: aircraft, aircraft_regno: aircraft_regno, take_off: datetime_now, landing: datetime_now, status: 1 }),
-      success: function (data) { location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php" },
+      success: function (data) { location.href = "/pages/time_management.php" },
       error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
     });
   });
@@ -675,7 +675,7 @@ function buttonListener() {
             flight_no: '', origin: '', destination: '', type: '', reg_no: aircraft_regno, owner: aircraft, arrival: '', non_revenue: '', dead_head: '', transit: '',
             gc_unloaded: '', gc_loaded: '', am_unloaded: '', am_loaded: '', license_no: '' }),
           success: function (data) {
-            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php";
+            location.href = "/pages/time_management.php";
           },
           error: function (jqXHR, textStatus, errorThrown) { alert('Something went wrong.'); }
         });
@@ -746,7 +746,7 @@ function loginUser() {
           var type = JSON.stringify(data.type)
           
           if(status == '"success"'){
-            location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/flight_plans.php"
+            location.href = "/pages/index.php"
           } else if(status == '"inactive"') {
             alert("Your account is inactive. Contact system administrator for more information.");
           } else {
@@ -864,7 +864,7 @@ function flightTime() {
         dataType: "json",
         data: JSON.stringify({ aircraft: aircraft_flighttime, aircraft_regno: regno_flighttime, pilot: pilot_flighttime, status: 0 }),
         success: function (data) {
-          location.href = "http://localhost/CAAP%20Lingayen%20Airport/pages/time_management.php";
+          location.href = "/pages/time_management.php";
         }
     });
   });
@@ -993,7 +993,7 @@ function readStudentRecord(){
 }
 
 function readStudentRecordRecord(){
-  var pilot = $('.profile-name').text().trim();
+  var pilot = $('#username').val().trim();
 
   $.ajax({
     url: '../api/flight/read_single_total_flight_hr.php',
@@ -1036,7 +1036,7 @@ function readStudentRecordRecord(){
 }
 
 function readScheduleSchedule(){
-  var pilot = $('.profile-name').text().trim();
+  var pilot = $('#username').val().trim();
 
   $.ajax({
     url: '../api/schedule/read_single_pilot.php',

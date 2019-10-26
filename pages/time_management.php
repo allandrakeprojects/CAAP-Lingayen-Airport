@@ -2,6 +2,7 @@
     <!-- Begin Page Content -->
     <div class="main-panel">
       <div class="content-wrapper">
+        <a class="mb-3" href="index.php" style="color: #38ce3c; display: block">< HOME</a>
         <!-- <div class="mb-4">
           <label for="sort_aircraft_regno">Aircraft Name:</label>
           <select id="sort_aircraft_regno" name="sort_aircraft_regno"></select>

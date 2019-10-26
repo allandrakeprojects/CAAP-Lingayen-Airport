@@ -2,6 +2,7 @@
     <!-- Begin Page Content -->
     <div class="main-panel">
       <div class="content-wrapper">
+        <a class="mb-3" href="index.php" style="color: #38ce3c; display: block">< HOME</a>
         <div class="row">
           <div class="col-md-12">
           <div class="card shadow mb-4">
@@ -162,7 +163,6 @@
                           <input type="text" class="form-control" style="width: 320px;" id="take_off_landing">
                           <div class="input-group-prepend input-group-text"><i class="icon-arrow-down"></i></div>
                         </div>
-                      </div>
                     </div>
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
@@ -252,7 +252,6 @@
                 <button type="button" class="btn btn-dark btn-add-flight" style="color: #38ce3c">Add</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
               </div>
-            </div>
             </div>
           </div>
         </div>

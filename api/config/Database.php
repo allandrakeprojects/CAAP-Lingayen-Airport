@@ -1,13 +1,13 @@
 <?php
     class Database {
-        // private $host = 'sql202.ezyro.com';
-        // private $db_name = 'ezyro_24616801_caap_lingayen_airport';
-        // private $username = 'ezyro_24616801';
-        // private $password = 'g1wbeaq8tmuxd';
-        private $host = 'localhost';
-        private $db_name = 'caap_lingayen_airport';
-        private $username = 'root';
-        private $password = '';
+        private $host = 'sql202.ezyro.com';
+        private $db_name = 'ezyro_24616801_caap_lingayen_airport';
+        private $username = 'ezyro_24616801';
+        private $password = 'g1wbeaq8tmuxd';
+        // private $host = 'localhost';
+        // private $db_name = 'caap_lingayen_airport';
+        // private $username = 'root';
+        // private $password = '';
         private $conn;
 
         public function connect() {

@@ -2,6 +2,7 @@
     <!-- Begin Page Content -->
     <div class="main-panel">
       <div class="content-wrapper">
+        <a class="mb-3" href="index.php" style="color: #38ce3c; display: block">< HOME</a>
         <div class="row">
           <div class="col-md-12">
           <div class="card shadow mb-4">

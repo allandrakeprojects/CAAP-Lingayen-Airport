@@ -5,6 +5,34 @@
         </div>
       </footer>
       <!-- partial -->
+
+      
+      <!-- Add Modal starts -->
+      <div class="modal fade" id="exampleModalChangePassword" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="padding: 15px 30px">
+              <form>
+                <div class="form-group" style="margin-bottom: 10px;">
+                  <label for="new_password" class="col-form-label" style="padding-bottom: 0">New Password:</label>
+                  <input type="password" class="form-control" id="new_password">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark btn-change-password" style="color: #38ce3c">Change</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->

@@ -2,7 +2,7 @@
   session_start();
 
   if(!isset($_SESSION['full_name'])){
-    header("Location: http://localhost/CAAP%20Lingayen%20Airport/pages/login.php");
+    header("Location: /pages/login.php");
     die();
   }
 ?>
@@ -38,5 +38,4 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include '../shared/_SideBar.php';?>
 

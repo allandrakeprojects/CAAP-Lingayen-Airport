@@ -12821,6 +12821,7 @@ dl {
   padding-top: 70px; }
 
 .main-panel {
+  width: 100% !important;
   -webkit-transition: width 0.25s ease, margin 0.25s ease;
   transition: width 0.25s ease, margin 0.25s ease;
   width: calc(100% - 240px);
