@@ -23,6 +23,7 @@
                       <th>Nationality</th>
                       <th>Flight Instructor</th>
                       <th>Route</th>
+                      <th>Under Maintenance</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -94,6 +95,13 @@
                     <label for="route" class="col-form-label" style="padding-bottom: 0">Route:</label>
                     <input type="text" class="form-control" id="route">
                   </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="under_maintenance" class="col-form-label" style="padding-bottom: 0">Under Maintenance:</label>
+                    <select class="form-control" id="under_maintenance">
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </select>
+                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -148,6 +156,13 @@
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="route_update" class="col-form-label" style="padding-bottom: 0">Route:</label>
                     <input type="text" class="form-control" id="route_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="under_maintenance_update" class="col-form-label" style="padding-bottom: 0">Under Maintenance:</label>
+                    <select class="form-control" id="under_maintenance_update">
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </select>
                   </div>
                 </form>
               </div>

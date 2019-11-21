@@ -21,6 +21,7 @@
   $schedule->nationality = $data->nationality;
   $schedule->instructor = $data->instructor;
   $schedule->route = $data->route;
+  $schedule->under_maintenance = $data->under_maintenance;
 
   if($schedule->update()) {
     echo json_encode(

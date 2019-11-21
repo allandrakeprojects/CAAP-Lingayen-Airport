@@ -9,7 +9,7 @@
 
     // POST api/schedule/create
     public function create() {
-      $query = 'INSERT INTO ' . $this->table . ' SET aircraft = :aircraft, time = :time, student = :student, nationality = :nationality, instructor = :instructor, route = :route, date_created = :date_created';
+      $query = 'INSERT INTO ' . $this->table . ' SET aircraft = :aircraft, time = :time, student = :student, nationality = :nationality, instructor = :instructor, route = :route, under_maintenance = :under_maintenance, date_created = :date_created';
       $stmt = $this->conn->prepare($query);
 
       $this->aircraft = htmlspecialchars(strip_tags($this->aircraft));
@@ -18,6 +18,7 @@
       $this->nationality = htmlspecialchars(strip_tags($this->nationality));
       $this->instructor = htmlspecialchars(strip_tags($this->instructor));
       $this->route = htmlspecialchars(strip_tags($this->route));
+      $this->under_maintenance = htmlspecialchars(strip_tags($this->under_maintenance));
       $this->date_created = htmlspecialchars(strip_tags($this->date_created));
       
       $stmt->bindParam(':aircraft', $this->aircraft);
@@ -26,6 +27,7 @@
       $stmt->bindParam(':nationality', $this->nationality);
       $stmt->bindParam(':instructor', $this->instructor);
       $stmt->bindParam(':route', $this->route);
+      $stmt->bindParam(':under_maintenance', $this->under_maintenance);
       $stmt->bindParam(':date_created', $this->date_created);
 
       if($stmt->execute()) {
@@ -57,7 +59,7 @@
 
     // PUT api/schedule/update
     public function update() {
-      $query = 'UPDATE ' . $this->table . ' SET aircraft = :aircraft, time = :time, student = :student, nationality = :nationality, instructor = :instructor, route = :route WHERE id = :id';
+      $query = 'UPDATE ' . $this->table . ' SET aircraft = :aircraft, time = :time, student = :student, nationality = :nationality, instructor = :instructor, route = :route, under_maintenance = :under_maintenance WHERE id = :id';
       $stmt = $this->conn->prepare($query);
 
       $this->id = htmlspecialchars(strip_tags($this->id));
@@ -67,6 +69,7 @@
       $this->nationality = htmlspecialchars(strip_tags($this->nationality));
       $this->instructor = htmlspecialchars(strip_tags($this->instructor));
       $this->route = htmlspecialchars(strip_tags($this->route));
+      $this->under_maintenance = htmlspecialchars(strip_tags($this->under_maintenance));
       
       $stmt->bindParam(':id', $this->id);
       $stmt->bindParam(':aircraft', $this->aircraft);
@@ -75,6 +78,7 @@
       $stmt->bindParam(':nationality', $this->nationality);
       $stmt->bindParam(':instructor', $this->instructor);
       $stmt->bindParam(':route', $this->route);
+      $stmt->bindParam(':under_maintenance', $this->under_maintenance);
 
       if($stmt->execute()) {
         return true;

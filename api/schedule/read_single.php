@@ -27,7 +27,8 @@
         'student' => $student,
         'nationality' => $nationality,
         'instructor' => $instructor,
-        'route' => $route
+        'route' => $route,
+        'under_maintenance' => $under_maintenance
       );
       array_push($schedule_arr, $schedule_item);
     }

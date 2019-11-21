@@ -692,13 +692,14 @@ function buttonListener() {
     var nationality = $('#nationality_update').val();
     var flight_instructor = $('#flight_instructor_update').val();
     var route = $('#route_update').val();
+    var under_maintenance = $('#under_maintenance_update').val();
         
     $.ajax({
         url: '../api/schedule/update.php',
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ id: schedule_id_glob, aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route }),
+        data: JSON.stringify({ id: schedule_id_glob, aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route, under_maintenance: under_maintenance }),
         success: function (data) {
           $('#exampleModalUpdateSchedule').modal('toggle');
           $('#exampleModalUpdateSchedule').find('form').trigger('reset');
@@ -878,13 +879,14 @@ function createSchedule() {
     var nationality = $('#nationality').val();
     var flight_instructor = $('#flight_instructor').val();
     var route = $('#route').val();
+    var under_maintenance = $('#under_maintenance').val();
         
     $.ajax({
         url: '../api/schedule/create.php',
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route }),
+        data: JSON.stringify({ aircraft: aircraft_ident, time: time, student: name_student, nationality: nationality, instructor: flight_instructor, route: route, under_maintenance: under_maintenance }),
         success: function (data) {
           $('#exampleModalAddSchedule').modal('toggle');
           $('#exampleModalAddSchedule').find('form').trigger('reset');
@@ -931,6 +933,7 @@ function readSchedule() {
       { "data": "nationality" },
       { "data": "instructor" },
       { "data": "route" },
+      { "data": "under_maintenance" },
       {
         data: null,
         defaultContent: "<button type='button' class='btn btn-primary btn-rounded btn-sm dt-edit btn-update-schedule' style='margin-right:5px;'><span class='icon-pencil' aria-hidden='true'></span></button><button type='button' class='btn btn-danger btn-rounded btn-sm btn-delete-schedule'><span class='icon-trash' aria-hidden='true'></span></button>"
@@ -953,6 +956,7 @@ function readSchedule() {
         $('#nationality_update').val(data[0].nationality);
         $('#flight_instructor_update').val(data[0].instructor);
         $('#route_update').val(data[0].route);
+        $('#under_maintenance_update').val(data[0].under_maintenance);
 
         $('#exampleModalUpdateSchedule').modal('show');
       },

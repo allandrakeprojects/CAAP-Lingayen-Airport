@@ -23,6 +23,7 @@
         'nationality' => $nationality,
         'instructor' => $instructor,
         'route' => $route,
+        'under_maintenance' => ($under_maintenance == 0) ? 'No' : 'Yes',
         'date_created' => $date_created,
       );
       array_push($schedule_arr, $schedule_item);
