@@ -16,9 +16,13 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Full name</th>
+                      <th>First Name</th>
+                      <th>Middle Initial</th>
+                      <th>Last Name</th>
                       <th>Contact Number</th>
                       <th>Address</th>
+                      <th>City</th>
+                      <th>Province</th>
                       <th>ID</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -61,8 +65,16 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="full-name" class="col-form-label" style="padding-bottom: 0">Full name:</label>
-                    <input type="text" class="form-control" id="full-name">
+                    <label for="first_name" class="col-form-label" style="padding-bottom: 0">First Name:</label>
+                    <input type="text" class="form-control" id="first_name">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="middle_initial" class="col-form-label" style="padding-bottom: 0">Middle Initial:</label>
+                    <input type="text" class="form-control" id="middle_initial">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="last_name" class="col-form-label" style="padding-bottom: 0">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="contact-number" class="col-form-label" style="padding-bottom: 0">Contact Number:</label>
@@ -71,6 +83,14 @@
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="address" class="col-form-label" style="padding-bottom: 0">Address:</label>
                     <input type="text" class="form-control" id="address">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="city" class="col-form-label" style="padding-bottom: 0">City:</label>
+                    <input type="text" class="form-control" id="city">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="province" class="col-form-label" style="padding-bottom: 0">Province:</label>
+                    <input type="text" class="form-control" id="province">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="email" class="col-form-label" style="padding-bottom: 0">ID:</label>
@@ -111,16 +131,32 @@
               <div class="modal-body" style="padding: 15px 30px">
                 <form>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="full-name-update" class="col-form-label" style="padding-bottom: 0">Full name:</label>
-                    <input type="text" class="form-control" id="full-name-update">
+                    <label for="first_name_update" class="col-form-label" style="padding-bottom: 0">First Name:</label>
+                    <input type="text" class="form-control" id="first_name_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="middle_initial_update" class="col-form-label" style="padding-bottom: 0">Middle Initial:</label>
+                    <input type="text" class="form-control" id="middle_initial_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="last_name_update" class="col-form-label" style="padding-bottom: 0">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="contact-number-update" class="col-form-label" style="padding-bottom: 0">Contact Number:</label>
                     <input type="text" class="form-control" id="contact-number-update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
-                    <label for="address-update" class="col-form-label" style="padding-bottom: 0">Address:</label>
-                    <input type="text" class="form-control" id="address-update">
+                    <label for="address_update" class="col-form-label" style="padding-bottom: 0">Address:</label>
+                    <input type="text" class="form-control" id="address_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="city_update" class="col-form-label" style="padding-bottom: 0">City:</label>
+                    <input type="text" class="form-control" id="city_update">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="province_update" class="col-form-label" style="padding-bottom: 0">Province:</label>
+                    <input type="text" class="form-control" id="province_update">
                   </div>
                   <div class="form-group" style="margin-bottom: 10px;">
                     <label for="email-update" class="col-form-label" style="padding-bottom: 0">ID:</label>

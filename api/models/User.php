@@ -18,19 +18,27 @@
 
     // POST api/user/create
     public function create() {
-      $query = 'INSERT INTO ' . $this->table_user . ' SET full_name = :full_name, contact_number = :contact_number, address = :address, email = :email, password = :password, status = :status';
+      $query = 'INSERT INTO ' . $this->table_user . ' SET first_name = :first_name, middle_initial = :middle_initial, last_name = :last_name, contact_number = :contact_number, address = :address, city = :city, province = :province, email = :email, password = :password, status = :status';
       $stmt = $this->conn->prepare($query);
 
-      $this->full_name = htmlspecialchars(strip_tags($this->full_name));
+      $this->first_name = htmlspecialchars(strip_tags($this->first_name));
+      $this->middle_initial = htmlspecialchars(strip_tags($this->middle_initial));
+      $this->last_name = htmlspecialchars(strip_tags($this->last_name));
       $this->contact_number = htmlspecialchars(strip_tags($this->contact_number));
       $this->address = htmlspecialchars(strip_tags($this->address));
+      $this->city = htmlspecialchars(strip_tags($this->city));
+      $this->province = htmlspecialchars(strip_tags($this->province));
       $this->email = htmlspecialchars(strip_tags($this->email));
       $this->password = htmlspecialchars(strip_tags($this->password));
       $this->status = htmlspecialchars(strip_tags($this->status));
       
-      $stmt->bindParam(':full_name', $this->full_name);
+      $stmt->bindParam(':first_name', $this->first_name);
+      $stmt->bindParam(':middle_initial', $this->middle_initial);
+      $stmt->bindParam(':last_name', $this->last_name);
       $stmt->bindParam(':contact_number', $this->contact_number);
       $stmt->bindParam(':address', $this->address);
+      $stmt->bindParam(':city', $this->city);
+      $stmt->bindParam(':province', $this->province);
       $stmt->bindParam(':email', $this->email);
       $stmt->bindParam(':password', $this->password);
       $stmt->bindParam(':status', $this->status);
@@ -64,21 +72,29 @@
 
     // PUT api/user/update
     public function update() {
-      $query = 'UPDATE ' . $this->table_user . ' SET full_name = :full_name, contact_number = :contact_number, address = :address, email = :email, password = :password, status = :status WHERE id = :id';
+      $query = 'UPDATE ' . $this->table_user . ' SET first_name = :first_name, middle_initial = :middle_initial, last_name = :last_name, contact_number = :contact_number, address = :address, city = :city, province = :province, email = :email, password = :password, status = :status WHERE id = :id';
       $stmt = $this->conn->prepare($query);
 
       $this->id = htmlspecialchars(strip_tags($this->id));
-      $this->full_name = htmlspecialchars(strip_tags($this->full_name));
+      $this->first_name = htmlspecialchars(strip_tags($this->first_name));
+      $this->middle_initial = htmlspecialchars(strip_tags($this->middle_initial));
+      $this->last_name = htmlspecialchars(strip_tags($this->last_name));
       $this->contact_number = htmlspecialchars(strip_tags($this->contact_number));
       $this->address = htmlspecialchars(strip_tags($this->address));
+      $this->city = htmlspecialchars(strip_tags($this->city));
+      $this->province = htmlspecialchars(strip_tags($this->province));
       $this->email = htmlspecialchars(strip_tags($this->email));
       $this->password = htmlspecialchars(strip_tags($this->password));
       $this->status = htmlspecialchars(strip_tags($this->status));
       
       $stmt->bindParam(':id', $this->id);
-      $stmt->bindParam(':full_name', $this->full_name);
+      $stmt->bindParam(':first_name', $this->first_name);
+      $stmt->bindParam(':middle_initial', $this->middle_initial);
+      $stmt->bindParam(':last_name', $this->last_name);
       $stmt->bindParam(':contact_number', $this->contact_number);
       $stmt->bindParam(':address', $this->address);
+      $stmt->bindParam(':city', $this->city);
+      $stmt->bindParam(':province', $this->province);
       $stmt->bindParam(':email', $this->email);
       $stmt->bindParam(':password', $this->password);
       $stmt->bindParam(':status', $this->status);
@@ -116,7 +132,7 @@
         if($row['status'] == 1){
           session_start();
           $_SESSION['id'] = $row['id'];
-          $_SESSION['full_name'] = $row['full_name'];
+          $_SESSION['full_name'] = $row['first_name'].' '.$row['middle_initial'].' '.$row['last_name'];
           $_SESSION['email'] = $row['email'];
           $_SESSION['type'] = $row['type'];
           $this->type = $row['type'];

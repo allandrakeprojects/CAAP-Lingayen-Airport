@@ -22,9 +22,13 @@
       extract($row);
       $user_item = array(
         'id' => $id,
-        'full_name' => $full_name,
+        'first_name' => $first_name,
+        'middle_initial' => $middle_initial,
+        'last_name' => $last_name,
         'contact_number' => $contact_number,
         'address' => $address,
+        'city' => $city,
+        'province' => $province,
         'email' => $email,
         'status' => ($status == '1') ? 'Active' : 'Inactive',
       );

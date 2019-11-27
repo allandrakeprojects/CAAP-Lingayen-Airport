@@ -16,6 +16,9 @@
     readFlight();
     // Time API
     fillTimeManagement();
+    setInterval(function() {
+      fillTimeManagement();
+    }, 10000);
     // Flight Time
     flightTime();
     // Schedule API
@@ -94,9 +97,13 @@ function datatable() {
 
 function createUser() {
   $('.btn-add-user').click(function(e) {
-    var full_name = $('#full-name').val();
+    var first_name = $('#first_name').val();
+    var middle_initial = $('#middle_initial').val();
+    var last_name = $('#last_name').val();
     var contact_number = $('#contact-number').val();
     var address = $('#address').val();
+    var city = $('#city').val();
+    var province = $('#province').val();
     var email = $('#email').val();
     var password = $('#password').val();
     var status = $('#status').val();
@@ -106,7 +113,7 @@ function createUser() {
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ full_name: full_name, contact_number: contact_number, address: address, email: email, password: password, status: status }),
+        data: JSON.stringify({ first_name: first_name, middle_initial: middle_initial, last_name: last_name, contact_number: contact_number, address: address, city: city, province: province, email: email, password: password, status: status }),
         success: function (data) {
           $('#exampleModalAddUser').modal('toggle');
           $('#exampleModalAddUser').find('form').trigger('reset');
@@ -137,9 +144,13 @@ function readUser() {
     },
     columns: [
       { "data": "id" },
-      { "data": "full_name" },
+      { "data": "first_name" },
+      { "data": "middle_initial" },
+      { "data": "last_name" },
       { "data": "contact_number" },
       { "data": "address" },
+      { "data": "city" },
+      { "data": "province" },
       { "data": "email" },
       { "data": "status" },
       {
@@ -158,9 +169,13 @@ function readUser() {
       dataType: "json",
       data: JSON.stringify({ id: user_id_glob }),
       success: function (data) {
-        $('#full-name-update').val(data[0].full_name);
+        $('#first_name_update').val(data[0].first_name);
+        $('#middle_initial_update').val(data[0].middle_initial);
+        $('#last_name_update').val(data[0].last_name);
         $('#contact-number-update').val(data[0].contact_number);
-        $('#address-update').val(data[0].address);
+        $('#address_update').val(data[0].address);
+        $('#city_update').val(data[0].city);
+        $('#province_update').val(data[0].province);
         $('#email-update').val(data[0].email);
         $('#status-update').val(data[0].status);
         $('#exampleModalUpdateUser').modal('show');
@@ -171,8 +186,8 @@ function readUser() {
 
   $("#dataTableUser").on("click", ".btn-delete-user", function(e) {
     user_id_glob = dataTableUser.row($(this).parents('tr')).data()["id"];
-    var full_name = dataTableUser.row($(this).parents('tr')).data()["full_name"];
-    $('#exampleModalDeleteUser').find('.modal-body-delete').append('Are you sure you want to delete user <strong>' + full_name + '</strong>?');
+    var first_name = dataTableUser.row($(this).parents('tr')).data()["first_name"];
+    $('#exampleModalDeleteUser').find('.modal-body-delete').append('Are you sure you want to delete user <strong>' + first_name + '</strong>?');
     $('#exampleModalDeleteUser').modal('show');
   });
 
@@ -349,7 +364,13 @@ function createFlight() {
 var flight_id_glob;
 function readFlight() {
   var dataTableFlight;
-  if($('#user_type').val().trim() == '0') {
+  var user_type;
+
+  if($('#user_type').val() != null){
+    user_type = $('#user_type').val().trim();
+  }
+
+  if(user_type == '0') {
     dataTableFlight = $('#dataTableFlight').DataTable({
       dom: 'lBfrtip',
       buttons: [
@@ -455,7 +476,7 @@ function readFlight() {
       flight_id_glob = dataTableFlight.row($(this).parents('tr')).data()["id"];
       $('#exampleModalDeleteFlight').modal('show');
     });
-  } else if($('#user_type').val().trim() == '1') {
+  } else if(user_type == '1') {
     var pilot = $('#username').val().trim();
     $.ajax({
       url: '../api/flight/custom_read.php',
@@ -488,9 +509,13 @@ function readFlight() {
 function buttonListener() {
   // User Modal
   $('.btn-update-user-modal').click(function(e) {
-    var full_name = $('#full-name-update').val();
+    var first_name = $('#first_name_update').val();
+    var middle_initial = $('#middle_initial_update').val();
+    var last_name = $('#last_name_update').val();
     var contact_number = $('#contact-number-update').val();
-    var address = $('#address-update').val();
+    var address = $('#address_update').val();
+    var city = $('#city_update').val();
+    var province = $('#province_update').val();
     var email = $('#email-update').val();
     var password = $('#password-update').val();
     var status = $('#status-update').val();
@@ -500,7 +525,7 @@ function buttonListener() {
         type: 'POST',
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({ id: user_id_glob, full_name: full_name, contact_number: contact_number, address: address, email: email, password: password, status: status }),
+        data: JSON.stringify({ id: user_id_glob, first_name: first_name, middle_initial: middle_initial, last_name: last_name, contact_number: contact_number, address: address, city: city, province: province, email: email, password: password, status: status }),
         success: function (data) {
           $('#exampleModalUpdateUser').modal('toggle');
           $('#exampleModalUpdateUser').find('form').trigger('reset');
@@ -740,7 +765,7 @@ function loginUser() {
           dataType: "json",
           data: JSON.stringify({ email: email, password: password }),
           error: function (request, status, error) {
-              alert("Password won't match to email.");
+            alert("Password won't match to email.");
           }
       }).done(function(data){
           var status = JSON.stringify(data.status)
@@ -772,10 +797,6 @@ function fillTimeManagement() {
         if(i == 0){
           sortAircraftRegno(data[i].aircraft);
           aircraft_get = data[i].aircraft;
-          
-          // setInterval(function() {
-          //   sortAircraftRegno(aircraft_get);
-          // }, 10000);
         }
         var value = '<option value="' + data[i].aircraft + '">' + data[i].aircraft + '</option>';
         if (strArray.includes(value) === false) strArray.push(value);
@@ -997,7 +1018,11 @@ function readStudentRecord(){
 }
 
 function readStudentRecordRecord(){
-  var pilot = $('#username').val().trim();
+  var pilot;
+
+  if($('#username').val() != null){
+    pilot = $('#username').val().trim();
+  }
 
   $.ajax({
     url: '../api/flight/read_single_total_flight_hr.php',
@@ -1040,7 +1065,11 @@ function readStudentRecordRecord(){
 }
 
 function readScheduleSchedule(){
-  var pilot = $('#username').val().trim();
+  var pilot;
+
+  if($('#username').val() != null){
+    pilot = $('#username').val().trim();
+  }
 
   $.ajax({
     url: '../api/schedule/read_single_pilot.php',
