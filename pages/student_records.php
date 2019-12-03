@@ -7,7 +7,8 @@
           <div class="col-md-12">
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between" style="align-items: center">
-              <h4 class="m-0 font-weight-bold" style="color: #38ce3c">Student Records</h4>            </div>
+              <h4 class="m-0 font-weight-bold" style="color: #38ce3c"><i class="icon-briefcase menu-icon"></i> Student Records</h4>
+            </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTableStudentRecords" width="100%" cellspacing="0">

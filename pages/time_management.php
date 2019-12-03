@@ -3,6 +3,10 @@
     <div class="main-panel">
       <div class="content-wrapper">
         <a class="mb-3" href="index.php" style="color: #38ce3c; display: block">< HOME</a>
+        
+        <div class="card-header py-3 d-flex justify-content-between" style="align-items: center">
+              <h4 class="m-0 font-weight-bold" style="color: #38ce3c"><i class="icon-hourglass menu-icon"></i> Time Management</h4>
+            </div>
         <!-- <div class="mb-4">
           <label for="sort_aircraft_regno">Aircraft Name:</label>
           <select id="sort_aircraft_regno" name="sort_aircraft_regno"></select>
